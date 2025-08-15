@@ -1,10 +1,10 @@
-# StarLive: Project Nexa Labs
+# StarLive: Project NexaLabs
 
-Welcome to Nexa Labs Website
+Welcome to NexaLabs Website
 
 ## About Us
 
-Nexa Labs is the part of StarLive project sector Research and Development Technology
+NexaLabs is the part of StarLive project sector Research and Development Technology
 
 ## Social Media
 
