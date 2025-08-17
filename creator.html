@@ -562,6 +562,10 @@
     </footer>
 
     <script>
+        // Function for navigation to creator page
+        function navigateToCreator(creatorId) {
+            window.location.href = `/profiles/${creatorId}.html`;
+        }
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -628,7 +632,7 @@
                 this.style.transform = 'scale(1) rotate(0deg)';
             });
 
-        // Menambahkan efek focus untuk keyboard navigation
+        // Add focus effect for keyboard navigation
         const creatorCards = document.querySelectorAll('.creator-card');
         creatorCards.forEach(card => {
             card.setAttribute('tabindex', '0');
