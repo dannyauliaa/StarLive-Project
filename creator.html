@@ -275,7 +275,140 @@
             color: var(--text-light);
             line-height: 1.6;
         }
-        
+
+        /* Creators Section */
+        .creators-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .creator-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .creator-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            z-index: -1;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .creator-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 3px solid #667eea;
+        }
+
+        .creator-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .creator-card:active {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .creator-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .creator-card:hover .creator-avatar {
+            transform: rotate(360deg);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .creator-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .creator-card:hover .creator-name {
+            color: #667eea;
+        }
+
+        .creator-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .click-indicator {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .creator-card:hover .click-indicator {
+            opacity: 1;
+        }
+
+        .navigation-info {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .creators-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .creator-card {
+                width: 280px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
         /* Social Links */
         .social-section {
             padding: 5rem 2rem;
@@ -364,10 +497,6 @@
             
         .header h1 {
                 font-size: 2rem;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
