@@ -240,9 +240,12 @@
             padding: 2rem;
             text-align: center;
             box-shadow: var(--card-shadow);
+            cursor: pointer;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            positive: relative;
+            overflow: hidden;
         }
         
         .character-card:hover {
@@ -286,20 +289,6 @@
             margin: 0 auto;
         }
 
-        .creator-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            width: 300px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 3px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
         .creator-card::before {
             content: '';
             position: absolute;
@@ -312,12 +301,6 @@
             border-radius: 20px;
             opacity: 0;
             transition: opacity 0.3s ease;
-        }
-
-        .creator-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border: 3px solid #667eea;
         }
 
         .creator-card:hover::before {
