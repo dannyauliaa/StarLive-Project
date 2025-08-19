@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexaLabs - Our Creators</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: #fff;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .creators-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .creator-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .creator-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            z-index: -1;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .creator-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 3px solid #667eea;
+        }
+
+        .creator-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .creator-card:active {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .creator-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .creator-card:hover .creator-avatar {
+            transform: rotate(360deg);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .creator-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .creator-card:hover .creator-name {
+            color: #667eea;
+        }
+
+        .creator-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .click-indicator {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .creator-card:hover .click-indicator {
+            opacity: 1;
+        }
+
+        .navigation-info {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .creators-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .creator-card {
+                width: 280px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Our Creators</h1>
+        <p>Meet our excellent creators</p>
+    </div>
+
+    <div class="creators-container">
+        <div class="creator-card" data-creator="saint-aulia" onclick="navigateToCreator('saint-aulia')">
+            <div class="creator-avatar"></div>
+            <h3 class="creator-name">Saint Aulia</h3>
+            <p class="creator-description">
+                A good leader who puts forward the most ideas. Always ready for the next exciting journey!
+            </p>
+            <div class="click-indicator">→</div>
+        </div>
+
+        <div class="creator-card" data-creator="noah-von-nobelius" onclick="navigateToCreator('noah-von-nobelius')">
+            <div class="creator-avatar"></div>
+            <h3 class="creator-name">Noah von Nobelius</h3>
+            <p class="creator-description">
+                A cool member who is quick in executing plans. Ready to welcome any developments!
+            </p>
+            <div class="click-indicator">→</div>
+        </div>
+
+        <div class="creator-card" data-creator="stella-luminara" onclick="navigateToCreator('stella-luminara')">
+            <div class="creator-avatar"></div>
+            <h3 class="creator-name">Stella Luminara</h3>
+            <p class="creator-description">
+                A cheerful and fun member who always fulfill our needs. Always there when you need them most.
+            </p>
+            <div class="click-indicator">→</div>
+        </div>
+    </div>
+
+    <div class="navigation-info">
+        <p><strong>Click on any creator card to view their profile page</strong></p>
+        <p>The navigation will redirect to: yoursite.com/creator/[creator-name]</p>
+    </div>
+
+    <script>
+        // Fungsi untuk navigasi ke halaman creator
+        function navigateToCreator(creatorId) {
+            // Opsi 1: Navigasi ke halaman dalam website yang sama
+            // window.location.href = `/creator/${creatorId}`;
+            
+            // Opsi 2: Navigasi ke halaman dengan struktur URL yang berbeda
+            // window.location.href = `/profile/${creatorId}.html`;
+            
+            // Opsi 3: Navigasi ke website eksternal
+            // window.open(`https://creator-profiles.com/${creatorId}`, '_blank');
+            
+            // Untuk demo, kita akan menampilkan alert
+            alert(`Navigating to ${creatorId} profile page!\n\nURL: /creator/${creatorId}`);
+            
+            // Uncomment salah satu baris di atas untuk navigasi yang sebenarnya
+        }
+
+        // Event listener untuk efek keyboard
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const focusedCard = document.querySelector('.creator-card:focus');
+                if (focusedCard) {
+                    const creatorId = focusedCard.getAttribute('data-creator');
+                    navigateToCreator(creatorId);
+                }
+            }
+        });
+
+        // Menambahkan efek focus untuk keyboard navigation
+        const creatorCards = document.querySelectorAll('.creator-card');
+        creatorCards.forEach(card => {
+            card.setAttribute('tabindex', '0');
+            
+            card.addEventListener('focus', function() {
+                this.style.outline = '3px solid #667eea';
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('blur', function() {
+                this.style.outline = 'none';
+                this.style.transform = 'none';
+            });
+        });
+
+        // Efek loading saat kartu diklik
+        function addLoadingEffect(element) {
+            element.style.opacity = '0.7';
+            element.style.transform = 'scale(0.98)';
+            
+            setTimeout(() => {
+                element.style.opacity = '1';
+                element.style.transform = 'none';
+            }, 200);
+        }
+
+        // Menambahkan event listener untuk semua kartu
+        creatorCards.forEach(card => {
+            card.addEventListener('click', function() {
+                addLoadingEffect(this);
+            });
+        });
+    </script>
+</body>
+</html>
