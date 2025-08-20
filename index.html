@@ -70,10 +70,10 @@
         
         .shape {
             position: absolute;
-            background: var(--accent-white);
+            background: var(--accent-blue);
             border-radius: 50%;
-            opacity: 0.6;
-            animation: float 20s infinite linear;
+            opacity: 0.2;
+            animation: float 15s infinite linear;
             
         }
         
@@ -83,7 +83,7 @@
             background: var(--primary-pink);
             top: 10%;
             left: 10%;
-            animation-delay: 0s;
+            animation-delay: 10s;
         }
         
         .shape:nth-child(2) {
@@ -92,7 +92,7 @@
             background: var(--accent-blue);
             top: 20%;
             right: 10%;
-            animation-delay: -7s;
+            animation-delay: 10s;
         }
         
         .shape:nth-child(3) {
@@ -101,7 +101,7 @@
             background: var(--accent-purple);
             bottom: 20%;
             left: 20%;
-            animation-delay: -14s;
+            animation-delay: 10s;
         }
 
         .particle:nth-child(5) {
@@ -395,6 +395,13 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.6; }
+            25% { transform: translateY(-100px) translateX(50px); opacity: 1; }
+            50% { transform: translateY(-50px) translateX(-30px); opacity: 0.8; }
+            75% { transform: translateY(-150px) translateX(20px); opacity: 0.9; }
         }
         
         @keyframes gradient {
