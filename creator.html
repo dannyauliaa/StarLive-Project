@@ -1,148 +1,210 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Profile Inspired</title>
-  <style>
-    :root {
-      --bg-light: #f0f4f8;
-      --card-bg: rgba(255, 255, 255, 0.8);
-      --accent: #6c63ff;
-      --hover-accent: #8a7af5;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--bg-light);
-      color: #333;
-    }
-    header {
-      display:flex; justify-content:space-between; align-items:center;
-      background: var(--card-bg); backdrop-filter: blur(8px);
-      padding: 1rem 2rem; position: sticky; top:0; z-index: 10;
-      font-weight: 600;
-    }
-    header h1 { font-size:1.5rem; color:var(--accent); }
-    nav ul { list-style:none; display:flex; gap:1.5rem; }
-    nav a {
-      text-decoration:none; color:#333; position:relative;
-      padding:0.2rem; transition: color 0.3s;
-    }
-    nav a:hover {
-      color: var(--hover-accent);
-    }
-    nav a::after {
-      content:""; position:absolute; left:50%; bottom:0;
-      transform: translateX(-50%) scaleX(0);
-      width: 100%; height:2px; background: var(--hover-accent);
-      transform-origin:center;
-      transition: transform 0.3s;
-    }
-    nav a:hover::after {
-      transform: translateX(-50%) scaleX(1);
-    }
-    .hero {
-      text-align:center; padding:4rem 1rem;
-    }
-    .hero h2 {
-      font-size:2.5rem; font-weight:700;
-      background: linear-gradient(90deg, #ff9a9e, #fad0c4, #fad0c4);
-      background-clip: text; color: transparent;
-      animation: shimmer 5s infinite linear;
-    }
-    @keyframes shimmer {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 100% 0%; }
-    }
-    .status, .likes {
-      display: flex; justify-content:center; gap:2rem;
-      padding:2rem 1rem;
-    }
-    .status div, .likes span {
-      background: var(--card-bg); padding:1rem; border-radius:0.5rem;
-      min-width:120px; text-align:center;
-    }
-    .status label {
-      display:block; font-weight:600;
-    }
-    .popup-btn {
-      position:fixed; bottom:2rem; right:2rem;
-      width:50px; height:50px; border:none; border-radius:50%;
-      background: var(--accent); color:white; font-size:1.5rem;
-      cursor: pointer; transition: transform 0.3s;
-      z-index:15;
-    }
-    .popup-btn.open { transform: rotate(45deg); }
-    .popup-window {
-      display:none; position:fixed;
-      bottom:4rem; right:2rem;
-      background: var(--card-bg);
-      padding:1rem; border-radius:0.5rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      z-index:14;
-    }
-    .popup-window.open {
-      display:block;
-    }
-    .popup-window ul { list-style:none; }
-    .popup-window li + li { margin-top:0.5rem; }
-    .popup-window a { text-decoration:none; color:var(--accent); font-weight:600; }
-    footer {
-      text-align:center; padding:2rem 1rem;
-      background: var(--card-bg); backdrop-filter: blur(8px);
-      margin-top:2rem;
-      font-weight:600;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>MyProfile</h1>
-    <nav><ul>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Works</a></li>
-      <li><a href="#">Gallery</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul></nav>
-  </header>
+import { useMemo } from "react";
 
-  <section class="hero">
-    <h2>Illustrator • Character Artist</h2>
-  </section>
+// Minimal single-file React profile page inspired by the structure of amashiro.com/profile,
+// but fully original in theme, layout, and assets. Uses Tailwind utility classes.
+// Drop-in as a component in any React app. No external images required.
 
-  <section class="status">
-    <div><label>Occupation</label>Illustrator</div>
-    <div><label>Birthday</label>10/11</div>
-    <div><label>Age</label>?????</div>
-  </section>
+function Blob({ className = "", style = {} }) {
+  // simple decorative blob
+  return (
+    <div
+      className={`absolute rounded-full opacity-20 blur-2xl ${className}`}
+      style={style}
+    />
+  );
+}
 
-  <section class="likes">
-    <span>Drawing</span>
-    <span>Games</span>
-    <span>Pineapple Pizza</span>
-  </section>
+function Icon({ name, className = "w-5 h-5" }) {
+  switch (name) {
+    case "pen":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
+          <path d="M16.862 3.487a2.2 2.2 0 1 1 3.111 3.111L8.5 18.172l-4.29 1.179L5.39 15.06 16.862 3.487Z"/>
+        </svg>
+      );
+    case "game":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
+          <rect x="3" y="9" width="18" height="8" rx="4"/>
+          <path d="M8 13h-2m1-1v2M16 12.75h.01M18.5 12.75h.01"/>
+        </svg>
+      );
+    case "pizza":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
+          <path d="M3 8c4.5-3.5 13.5-3.5 18 0l-9 13L3 8Z"/>
+          <circle cx="9" cy="11" r="1"/> <circle cx="14" cy="13" r="1"/> <circle cx="12" cy="9" r="1"/>
+        </svg>
+      );
+    case "calendar":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
+          <rect x="3" y="4" width="18" height="18" rx="3"/>
+          <path d="M8 2v4M16 2v4M3 10h18"/>
+        </svg>
+      );
+    case "briefcase":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
+          <rect x="3" y="7" width="18" height="13" rx="2"/>
+          <path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 12h18"/>
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
 
-  <button class="popup-btn" id="popupBtn">+</button>
-  <div class="popup-window" id="popupWin">
-    <ul>
-      <li><a href="#">Link A</a></li>
-      <li><a href="#">Link B</a></li>
-      <li><a href="#">Link C</a></li>
-    </ul>
-  </div>
+function Chip({ icon, label }) {
+  return (
+    <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm text-slate-700 dark:text-slate-100 border-slate-300/70 dark:border-slate-700/60 bg-white/60 dark:bg-slate-800/50 backdrop-blur">
+      {icon && <Icon name={icon} className="w-4 h-4" />} {label}
+    </span>
+  );
+}
 
-  <footer>
-    &copy; 2025 MyProfile
-  </footer>
+function StatRow({ name, value, icon }) {
+  return (
+    <div className="flex items-center justify-between rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 px-4 py-3 shadow-sm">
+      <div className="flex items-center gap-2 font-medium text-slate-700 dark:text-slate-200">
+        {icon && <Icon name={icon} className="w-4 h-4" />} <span>{name}</span>
+      </div>
+      <div className="text-slate-500 dark:text-slate-400">{value}</div>
+    </div>
+  );
+}
 
-  <script>
-    const btn = document.getElementById('popupBtn');
-    const win = document.getElementById('popupWin');
-    btn.addEventListener('click', () => {
-      win.classList.toggle('open');
-      btn.classList.toggle('open');
-    });
-  </script>
-</body>
-</html>
+export default function ProfileInspired() {
+  const likes = useMemo(
+    () => [
+      { icon: "pen", label: "Drawing" },
+      { icon: "game", label: "Games" },
+      { icon: "pizza", label: "Pineapple Pizza" },
+    ],
+    []
+  );
+
+  return (
+    <div className="min-h-screen w-full overflow-x-hidden bg-gradient-to-br from-sky-50 via-indigo-50 to-pink-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900 text-slate-800 dark:text-slate-100">
+      {/* Decorative blobs */}
+      <div className="pointer-events-none fixed inset-0 -z-10">
+        <Blob className="w-72 h-72 bg-cyan-400 top-20 -left-10 animate-[float_12s_linear_infinite]" />
+        <Blob className="w-96 h-96 bg-fuchsia-400 bottom-10 -right-16 animate-[float_18s_linear_infinite]" />
+        <Blob className="w-80 h-80 bg-indigo-400 top-1/2 left-1/2 -translate-x-1/2 animate-[float_15s_linear_infinite]" />
+        <style>{`@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-30px)}100%{transform:translateY(0)}}`}</style>
+      </div>
+
+      {/* Top nav */}
+      <header className="sticky top-0 z-20 backdrop-blur bg-white/50 dark:bg-slate-950/40 border-b border-slate-200/50 dark:border-slate-800">
+        <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+          <a href="#home" className="font-bold tracking-tight text-xl">Aiko<span className="text-indigo-500">.</span></a>
+          <ul className="hidden md:flex items-center gap-6 text-sm">
+            <li><a href="#profile" className="hover:text-indigo-600">Profile</a></li>
+            <li><a href="#works" className="hover:text-indigo-600">Works</a></li>
+            <li><a href="#gallery" className="hover:text-indigo-600">Gallery</a></li>
+            <li><a href="#contact" className="hover:text-indigo-600">Contact</a></li>
+          </ul>
+          <div className="flex items-center gap-3">
+            <a className="text-sm hover:underline" href="#social">Social</a>
+          </div>
+        </nav>
+      </header>
+
+      {/* Hero / Profile Card */}
+      <section id="profile" className="mx-auto max-w-6xl px-4 pt-10 md:pt-16 pb-6">
+        <div className="grid items-center gap-6 md:grid-cols-[240px,1fr]">
+          {/* Avatar */}
+          <div className="relative mx-auto md:mx-0 h-56 w-56 rounded-full bg-gradient-to-br from-indigo-400 to-cyan-400 p-1 shadow-lg">
+            <div className="h-full w-full rounded-full bg-white dark:bg-slate-950 grid place-content-center">
+              {/* Placeholder avatar */}
+              <svg viewBox="0 0 24 24" className="w-24 h-24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 20c0-4.418 3.582-8 8-8s8 3.582 8 8" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Text + chips */}
+          <div className="space-y-5">
+            <div>
+              <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight">Aiko Hoshino</h1>
+              <p className="mt-1 text-slate-600 dark:text-slate-400">Illustrator • Character Artist</p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {likes.map((l) => (
+                <Chip key={l.label} icon={l.icon} label={l.label} />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Status grid */}
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <StatRow name="Occupation" value="Illustrator" icon="briefcase" />
+          <StatRow name="Birthday" value="10/11" icon="calendar" />
+          <StatRow name="Age" value="? ? ?" />
+        </div>
+
+        {/* CTA buttons */}
+        <div id="social" className="mt-6 flex flex-wrap gap-3">
+          <a href="#" className="rounded-2xl border border-slate-300 bg-white/70 px-4 py-2 text-sm shadow hover:shadow-md transition">X / Twitter</a>
+          <a href="#" className="rounded-2xl border border-slate-300 bg-white/70 px-4 py-2 text-sm shadow hover:shadow-md transition">YouTube</a>
+          <a href="#" className="rounded-2xl border border-slate-300 bg-white/70 px-4 py-2 text-sm shadow hover:shadow-md transition">Pixiv</a>
+        </div>
+      </section>
+
+      {/* Works section (optional) */}
+      <section id="works" className="mx-auto max-w-6xl px-4 py-10">
+        <h2 className="text-xl font-semibold mb-4">Recent Works</h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="group overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 shadow-sm">
+              <div className="aspect-[4/3] grid place-content-center text-slate-400">
+                <span className="text-sm">Placeholder #{i + 1}</span>
+              </div>
+              <div className="p-3 text-sm text-slate-600 dark:text-slate-400">Artwork title {i + 1}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Gallery section (optional) */}
+      <section id="gallery" className="mx-auto max-w-6xl px-4 py-10">
+        <h2 className="text-xl font-semibold mb-4">Gallery</h2>
+        <div className="grid gap-3 grid-cols-2 md:grid-cols-4">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div key={i} className="aspect-square rounded-xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 grid place-content-center text-slate-400">
+              <span className="text-xs">Image {i + 1}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="mx-auto max-w-6xl px-4 py-12">
+        <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 p-6 shadow-sm">
+          <h2 className="text-xl font-semibold">Contact</h2>
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">For inquiries and commissions, send an email to <a href="mailto:aiko@example.com" className="underline">aiko@example.com</a>.</p>
+          <form className="mt-4 grid gap-3 max-w-xl">
+            <input className="rounded-xl border border-slate-300/80 bg-white/90 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-400" placeholder="Your name" />
+            <input className="rounded-xl border border-slate-300/80 bg-white/90 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-400" placeholder="Email" type="email" />
+            <textarea className="rounded-xl border border-slate-300/80 bg-white/90 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-400" rows={4} placeholder="Message" />
+            <button type="button" className="rounded-xl bg-indigo-600 px-4 py-2 text-white font-medium shadow hover:shadow-md">Send</button>
+          </form>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-slate-200/60 dark:border-slate-800/80">
+        <div className="mx-auto max-w-6xl px-4 py-6 text-sm flex items-center justify-between">
+          <span>© {new Date().getFullYear()} Aiko Studio</span>
+          <div className="flex gap-4">
+            <a href="#profile" className="hover:underline">Profile</a>
+            <a href="#works" className="hover:underline">Works</a>
+            <a href="#contact" className="hover:underline">Contact</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
