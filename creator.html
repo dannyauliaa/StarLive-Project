@@ -651,26 +651,25 @@
                 Crafting beautiful digital experiences through innovative design and creative solutions
             </p>
             <div class="hero-cta">
-                <a href="#media" class="btn btn-primary">Check us!</a>
-                <a href="#contact" class="btn btn-secondary">Ask us</a>
+                <a href="#media" class="btn btn-primary">Connect us!</a>
             </div>
         </div>
     </section>
 
-    <!-- Creator Section -->
-    <section id="creator" class="creator">
+    <!-- Media Section -->
+    <section id="media" class="media">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Our Creator</h2>
+                <h2 class="section-title">Creator</h2>
                 <p class="section-subtitle">
-                    Let to know our creative creators.
+                    Our official social media channels connect us with public.
                 </p>
             </div>
             
             <div class="media-grid">
                 <div class="media-item">
-                    <div class="media-image design-2"> 
-                        <img class="img-fluid" src="Assets/MicheleSmile" alt="..." />
+                    <div class="media-image design-1">
+                        <img class="img-fluid" src="Assets/MicheleSmile.png" alt="..." />
                     </div>
                     <div class="media-content">
                         <div class="media-category">Chief of Executive</div>
@@ -681,14 +680,14 @@
                         <div class="media-tech">
                             <span class="tech-tag">Assertive</span>
                             <span class="tech-tag">Steady</span>
-                            <span class="tech-tag">Responsive</span>
+                            <span class="tech-tag">Responsiv</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="media-item">
                     <div class="media-image design-2">
-                        <img class="img-fluid" src="Assets/CelestiaLOL" alt="..." />
+                        <img class="img-fluid" src="Assets/CelestiaLOL.jpg" alt="..." />
                     </div>
                     <div class="media-content">
                         <div class="media-category">Chief of Nova Prospekt</div>
@@ -698,7 +697,7 @@
                         </p>
                         <div class="media-tech">
                             <span class="tech-tag">Easygoing</span>
-                            <span class="tech-tag">Quiet</span>
+                            <span class="tech-tag">Calm</span>
                             <span class="tech-tag">Smart</span>
                         </div>
                     </div>
@@ -706,7 +705,7 @@
 
                 <div class="media-item">
                     <div class="media-image design-3">
-                        <img class="img-fluid" src="Assets/ChiyoEgg" alt="..." />
+                        <img class="img-fluid" src="Assets/ChiyoEgg.png" alt="..." />                        
                     </div>
                     <div class="media-content">
                         <div class="media-category">Chief of Stellar's Table</div>
@@ -724,6 +723,9 @@
             </div>
         </div>
     </section>
+
+    
+   
 
     <!-- Footer -->
     <footer class="footer">
@@ -802,37 +804,8 @@
             });
         });
 
-        // Form submission
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                subject: document.getElementById('subject').value,
-                message: document.getElementById('message').value
-            };
+        
 
-            // Simple validation
-            if (!formData.name || !formData.email || !formData.message) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-
-            // Simulate form submission
-            const submitBtn = document.querySelector('.contact-form button');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-
-            setTimeout(() => {
-                alert('Thank you for your message! I\'ll reply to you soon.');
-                this.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 2000);
-        });
 
         // Mobile menu toggle (basic implementation)
         document.querySelector('.mobile-menu').addEventListener('click', function() {
