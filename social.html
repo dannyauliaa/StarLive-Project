@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StarLive - Works</title>
+    <title>StarLive - Social</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
@@ -15,16 +15,28 @@
 
         :root {
             --primary-color: #2563eb;
+            --primary-pink: #ff6b9d;
             --secondary-color: #7c3aed;
+            --secondary-pink: #ffeef4;
             --accent-color: #f59e0b;
+            --accent-blue: #4dabf7;
+            --accent-purple: #9775fa;
+            --accent-peach:#ffb6b9;
+            --accent-mintgreen:#98ff98;
+            --accent-turquoise:#40e0d0;
             --text-dark: #1f2937;
             --text-light: #6b7280;
+            --text-litedark: #2d3436;
+            --text-litelight: #636e72;
             --bg-primary: #ffffff;
             --bg-secondary: #f8fafc;
             --border-color: #e5e7eb;
             --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --card-border: rgba(255, 255, 255, 0.2);
+            --neon-glow: 0 0 20px rgba(74, 171, 247, 0.5);
         }
 
         body {
@@ -700,17 +712,86 @@
         </div>
         
         <div class="hero-content">
-            <p class="hero-subtitle">Works </p>
+            <p class="hero-subtitle">Social</p>
             <h1 class="hero-title">StarLive</h1>
             <p class="hero-description">
-                Crafting beautiful digital experiences through innovative design and creative solutions
+                Interesting to connect relationships with us?
             </p>
             <div class="hero-cta">
-                <a href="#portfolio" class="btn btn-primary">Chat us!</a>
+                <a href="#media" class="btn btn-primary">See our social media</a>
+                <a href="#contact" class="btn btn-secondary">Let's chat us!</a>
             </div>
         </div>
     </section>
 
+    <!-- Media Section -->
+    <section id="media" class="media">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Social Media</h2>
+                <p class="section-subtitle">
+                   Below are our official social media to reach public communication.
+                </p>
+            </div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image design-1">
+                        <span>UI/UX Design</span>
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">Web Design</div>
+                        <h3 class="portfolio-title">E-commerce Platform Redesign</h3>
+                        <p class="portfolio-description">
+                            Complete redesign of an e-commerce platform focusing on user experience and conversion optimization.
+                        </p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">Figma</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">TypeScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image design-2">
+                        <span>Mobile App</span>
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">Mobile Design</div>
+                        <h3 class="portfolio-title">Fitness Tracking App</h3>
+                        <p class="portfolio-description">
+                            Modern fitness app with clean interface and intuitive user flow for tracking workouts and progress.
+                        </p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Redux</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image design-3">
+                        <span>Brand Identity</span>
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">Branding</div>
+                        <h3 class="portfolio-title">Startup Brand Identity</h3>
+                        <p class="portfolio-description">
+                            Complete brand identity design including logo, color palette, typography, and brand guidelines.
+                        </p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">Adobe CC</span>
+                            <span class="tech-tag">Illustrator</span>
+                            <span class="tech-tag">Photoshop</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+                
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
@@ -731,12 +812,12 @@
                     <input type="email" id="email" placeholder="your@email.com">
                 </div>
                 <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" placeholder="Project discussion">
+                    <label for="subject">Topic</label>
+                    <input type="text" id="topic" placeholder="What's the topic?">
                 </div>
                 <div class="form-group">
                     <label for="message">Message</label>
-                    <textarea id="message" placeholder="Tell me about your project..."></textarea>
+                    <textarea id="message" placeholder="Explain your project or question"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Send Message</button>
             </form>
