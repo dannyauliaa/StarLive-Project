@@ -730,28 +730,28 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title" style="color: white;">Let's Work Together</h2>
+                <h2 class="section-title" style="color: white;">Contact us for more</h2>
                 <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.8);">
                     Ready to bring your ideas to life? Let's discuss your next project
                 </p>
             </div>
             
-            <form class="contact-form">
-                <div class="form-group">
+            <form class="contact-form" data-sb-form-api-token="API_TOKEN">
+                <div class="form-group mb-3">
                     <label for="name">Name</label>
-                    <input type="text" id="name" placeholder="Your name">
+                    <input class="form-control" type="text" id="name" placeholder="Who are you?" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group mb-3>
                     <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="your@email.com">
+                    <input class="form-control" type="email" id="email" placeholder="Drop your email" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group mb-3">
                     <label for="subject">Topic</label>
-                    <input type="text" id="topic" placeholder="What's your topic?">
+                    <input class="form-control" type="text" id="topic" placeholder="What's your topic?" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group mb-3">
                     <label for="message">Message</label>
-                    <textarea id="message" placeholder="Explain about your question..."></textarea>
+                    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Explain about your question..." required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Send Message</button>
             </form>
