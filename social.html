@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StarLive - Works</title>
+    <title>スターライブ - Social</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
@@ -450,6 +450,7 @@
         /* Contact Section */
         .contact {
             padding: 8rem 0;
+            display: inline-block
             background: var(--gradient-1);
             color: white;
             text-align: center;
@@ -965,7 +966,7 @@
         });
 
         // Add hover effects for interactive elements
-        document.querySelectorAll('a, button, .portfolio-item').forEach(element => {
+        document.querySelectorAll('a, button, .media-item').forEach(element => {
             element.addEventListener('mouseenter', function() {
                 const cursor = document.querySelector('.cursor');
                 if (cursor) {
