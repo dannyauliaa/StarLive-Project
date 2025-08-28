@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StarLive - Social</title>
+    <title>StarLive - Works</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
@@ -317,8 +317,8 @@
             animation: float 5s ease-in-out infinite 2s;
         }
 
-        /* Portfolio Section */
-        .portfolio {
+        /* Media Section */
+        .media {
             padding: 8rem 0;
             background: var(--bg-secondary);
         }
@@ -351,14 +351,14 @@
             margin: 0 auto;
         }
 
-        .portfolio-grid {
+        .media-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 2rem;
             margin-bottom: 4rem;
         }
 
-        .portfolio-item {
+        .media-item {
             background: white;
             border-radius: 20px;
             overflow: hidden;
@@ -368,12 +368,12 @@
             position: relative;
         }
 
-        .portfolio-item:hover {
+        .media-item:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
         }
 
-        .portfolio-image {
+        .media-image {
             height: 280px;
             position: relative;
             overflow: hidden;
@@ -386,11 +386,11 @@
             font-weight: 600;
         }
 
-        .portfolio-image.design-1 { background: var(--gradient-1); }
-        .portfolio-image.design-2 { background: var(--gradient-2); }
-        .portfolio-image.design-3 { background: var(--gradient-3); }
+        .media-image.design-1 { background: var(--gradient-1); }
+        .media-image.design-2 { background: var(--gradient-2); }
+        .media-image.design-3 { background: var(--gradient-3); }
 
-        .portfolio-image::before {
+        .media-image::before {
             content: '';
             position: absolute;
             top: 0;
@@ -401,15 +401,15 @@
             transition: left 0.5s ease;
         }
 
-        .portfolio-item:hover .portfolio-image::before {
+        .media-item:hover .media-image::before {
             left: 100%;
         }
 
-        .portfolio-content {
+        .media-content {
             padding: 2rem;
         }
 
-        .portfolio-category {
+        .media-category {
             font-size: 0.9rem;
             font-weight: 600;
             color: var(--primary-color);
@@ -418,20 +418,20 @@
             margin-bottom: 0.5rem;
         }
 
-        .portfolio-title {
+        .media-title {
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
             color: var(--text-dark);
         }
 
-        .portfolio-description {
+        .media-description {
             color: var(--text-light);
             line-height: 1.6;
             margin-bottom: 1.5rem;
         }
 
-        .portfolio-tech {
+        .media-tech {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
@@ -446,73 +446,6 @@
             font-weight: 500;
         }
 
-        /* About Section */
-        .about {
-            padding: 8rem 0;
-            background: white;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-light);
-        }
-
-        .about-text h3 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-
-        .skill-item {
-            background: var(--bg-secondary);
-            padding: 1.5rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .skill-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .skill-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 1rem;
-            background: var(--gradient-1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .skill-name {
-            font-weight: 600;
-            color: var(--text-dark);
-        }
 
         /* Contact Section */
         .contact {
@@ -715,11 +648,11 @@
             <p class="hero-subtitle">Social</p>
             <h1 class="hero-title">StarLive</h1>
             <p class="hero-description">
-                Interesting to connect relationships with us?
+                Crafting beautiful digital experiences through innovative design and creative solutions
             </p>
             <div class="hero-cta">
-                <a href="#media" class="btn btn-primary">See our social media</a>
-                <a href="#contact" class="btn btn-secondary">Let's chat us!</a>
+                <a href="#media" class="btn btn-primary">Go visit!</a>
+                <a href="#contact" class="btn btn-secondary">Ask us</a>
             </div>
         </div>
     </section>
@@ -728,24 +661,24 @@
     <section id="media" class="media">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Featured Social Media</h2>
+                <h2 class="section-title">Social Media</h2>
                 <p class="section-subtitle">
-                   Below are our official social media to reach public communication.
+                    Our official social media channels connect us with public.
                 </p>
             </div>
             
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <div class="portfolio-image design-1">
+            <div class="media-grid">
+                <div class="media-item">
+                    <div class="media-image design-1">
                         <span>UI/UX Design</span>
                     </div>
-                    <div class="portfolio-content">
-                        <div class="portfolio-category">Web Design</div>
-                        <h3 class="portfolio-title">E-commerce Platform Redesign</h3>
-                        <p class="portfolio-description">
+                    <div class="media-content">
+                        <div class="media-category">YouTube</div>
+                        <h3 class="media-title">E-commerce Platform Redesign</h3>
+                        <p class="media-description">
                             Complete redesign of an e-commerce platform focusing on user experience and conversion optimization.
                         </p>
-                        <div class="portfolio-tech">
+                        <div class="media-tech">
                             <span class="tech-tag">Figma</span>
                             <span class="tech-tag">React</span>
                             <span class="tech-tag">TypeScript</span>
@@ -753,17 +686,17 @@
                     </div>
                 </div>
 
-                <div class="portfolio-item">
-                    <div class="portfolio-image design-2">
+                <div class="media-item">
+                    <div class="media-image design-2">
                         <span>Mobile App</span>
                     </div>
-                    <div class="portfolio-content">
-                        <div class="portfolio-category">Mobile Design</div>
-                        <h3 class="portfolio-title">Fitness Tracking App</h3>
-                        <p class="portfolio-description">
+                    <div class="media-content">
+                        <div class="media-category">Instagram</div>
+                        <h3 class="media-title">Fitness Tracking App</h3>
+                        <p class="media-description">
                             Modern fitness app with clean interface and intuitive user flow for tracking workouts and progress.
                         </p>
-                        <div class="portfolio-tech">
+                        <div class="media-tech">
                             <span class="tech-tag">React Native</span>
                             <span class="tech-tag">Firebase</span>
                             <span class="tech-tag">Redux</span>
@@ -771,17 +704,17 @@
                     </div>
                 </div>
 
-                <div class="portfolio-item">
-                    <div class="portfolio-image design-3">
+                <div class="media-item">
+                    <div class="media-image design-3">
                         <span>Brand Identity</span>
                     </div>
-                    <div class="portfolio-content">
-                        <div class="portfolio-category">Branding</div>
-                        <h3 class="portfolio-title">Startup Brand Identity</h3>
-                        <p class="portfolio-description">
+                    <div class="media-content">
+                        <div class="media-category">Twitter/X</div>
+                        <h3 class="media-title">Startup Brand Identity</h3>
+                        <p class="media-description">
                             Complete brand identity design including logo, color palette, typography, and brand guidelines.
                         </p>
-                        <div class="portfolio-tech">
+                        <div class="media-tech">
                             <span class="tech-tag">Adobe CC</span>
                             <span class="tech-tag">Illustrator</span>
                             <span class="tech-tag">Photoshop</span>
@@ -791,7 +724,8 @@
             </div>
         </div>
     </section>
-                
+
+    
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
@@ -813,11 +747,11 @@
                 </div>
                 <div class="form-group">
                     <label for="subject">Topic</label>
-                    <input type="text" id="topic" placeholder="What's the topic?">
+                    <input type="text" id="topic" placeholder="What's your topic?">
                 </div>
                 <div class="form-group">
                     <label for="message">Message</label>
-                    <textarea id="message" placeholder="Explain your project or question"></textarea>
+                    <textarea id="message" placeholder="Explain about your question..."></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Send Message</button>
             </form>
