@@ -15,11 +15,11 @@
 
         :root {
             --primary-color: #2563eb;
-            --primary-pink: #ff6b9d;
+            --primary-red: #ad0921;
             --secondary-color: #7c3aed;
             --secondary-pink: #ffeef4;
             --accent-color: #f59e0b;
-            --accent-yellow: #D4D12A;
+            --accent-yellow: #d4d12a;
             --accent-blue: #4dabf7;
             --accent-purple: #9775fa;
             --accent-peach:#ffb6b9;
@@ -204,12 +204,15 @@
         .hero-title {
             font-size: 4rem;
             font-weight: 700;
-            background: linear-gradient(45deg, var(--primary-pink), var(--accent-yellow), var(--accent-blue), var(--accent-purple));
+            background: linear-gradient(40deg, var(--primary-red), var(--accent-yellow), var(--accent-blue), var(--accent-purple));
             margin-bottom: 1.5rem;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             line-height: 1.1;
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards 0.4s;
+            animation: gradient 3s ease-in-out infinite;
         }
 
         .hero-description {
