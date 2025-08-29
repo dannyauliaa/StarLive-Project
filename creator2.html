@@ -271,6 +271,131 @@
                 addLoadingEffect(this);
             });
         });
+        // Data creator untuk popup
+        const creatorData = {
+            creator1: {
+                avatar: 'DA',
+                name: 'Danny Aulia',
+                category: 'UI/UX Designer',
+                description: 'Complete redesign of an e-commerce platform focusing on user experience and conversion optimization. Passionate about creating digital experiences that delight users and drive business results.',
+                projects: 25,
+                clients: 150,
+                rating: 4.9,
+                profileUrl: 'profile-danny.html'
+            },
+            creator2: {
+                avatar: 'FA',
+                name: 'Fitness App Designer',
+                category: 'Mobile App Designer',
+                description: 'Modern fitness app with clean interface and intuitive user flow for tracking workouts and progress. Specialized in health and wellness app design.',
+                projects: 18,
+                clients: 89,
+                rating: 4.8,
+                profileUrl: 'profile-fitness.html'
+            },
+            creator3: {
+                avatar: 'BD',
+                name: 'Brand Designer',
+                category: 'Brand Identity',
+                description: 'Complete brand identity design including logo, color palette, typography, and brand guidelines. Expert in creating memorable brand experiences.',
+                projects: 32,
+                clients: 200,
+                rating: 4.9,
+                profileUrl: 'profile-brand.html'
+            },
+            creator4: {
+                avatar: 'WD',
+                name: 'Web Developer',
+                category: 'Full Stack Developer',
+                description: 'Creating responsive and interactive web applications with modern technologies and frameworks. Passionate about clean code and user experience.',
+                projects: 45,
+                clients: 120,
+                rating: 4.7,
+                profileUrl: 'profile-webdev.html'
+            },
+            creator5: {
+                avatar: 'GD',
+                name: 'Graphic Designer',
+                category: 'Visual Designer',
+                description: 'Specialized in creating compelling visual content for digital and print media campaigns. Expert in visual storytelling and brand communication.',
+                projects: 28,
+                clients: 95,
+                rating: 4.8,
+                profileUrl: 'profile-graphic.html'
+            },
+            creator6: {
+                avatar: 'AD',
+                name: 'Animation Designer',
+                category: 'Motion Graphics',
+                description: 'Expert in creating engaging animations and motion graphics for web and mobile applications. Bringing ideas to life through motion.',
+                projects: 22,
+                clients: 75,
+                rating: 4.9,
+                profileUrl: 'profile-animation.html'
+            }
+        };
+
+        let currentCreator = null;
+
+        function openPopup(creatorId) {
+            currentCreator = creatorData[creatorId];
+            if (!currentCreator) return;
+
+            // Update popup content
+            document.getElementById('popupAvatar').textContent = currentCreator.avatar;
+            document.getElementById('popupName').textContent = currentCreator.name;
+            document.getElementById('popupCategory').textContent = currentCreator.category;
+            document.getElementById('popupDescription').textContent = currentCreator.description;
+            document.getElementById('projectCount').textContent = currentCreator.projects;
+            document.getElementById('clientCount').textContent = currentCreator.clients;
+            document.getElementById('ratingValue').textContent = currentCreator.rating;
+
+            // Show popup
+            document.getElementById('popupOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePopup() {
+            document.getElementById('popupOverlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            currentCreator = null;
+        }
+
+        function goToProfile() {
+            if (currentCreator && currentCreator.profileUrl) {
+                // Redirect ke halaman profil creator
+                window.location.href = currentCreator.profileUrl;
+            }
+        }
+
+        // Close popup when clicking overlay
+        document.getElementById('popupOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePopup();
+            }
+        });
+
+        // Close popup with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePopup();
+            }
+        });
+
+        // Add some animation effects
+        window.addEventListener('load', function() {
+            const cards = document.querySelectorAll('.creator-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
     </script>
 </body>
 </html>
