@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スターライブ - Noah von Nobelius</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-pink: #ff6b9d;
+            --secondary-pink: #ffeef4;
+            --accent-blue: #4dabf7;
+            --accent-purple: #9775fa;
+            --accent-orange: #ff8c42;
+            --text-dark: #2d3436;
+            --text-light: #636e72;
+            --text-muted: #95a5a6;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --glass-bg: rgba(255, 255, 255, 0.9);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+        
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+            animation: float 25s infinite linear;
+        }
+        
+        .shape:nth-child(1) {
+            width: 120px;
+            height: 120px;
+            background: var(--primary-pink);
+            top: 15%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        
+        .shape:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            background: var(--accent-blue);
+            top: 60%;
+            right: 10%;
+            animation-delay: -8s;
+        }
+        
+        .shape:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            background: var(--accent-purple);
+            bottom: 30%;
+            left: 15%;
+            animation-delay: -16s;
+        }
+        
+        .shape:nth-child(4) {
+            width: 90px;
+            height: 90px;
+            background: var(--accent-orange);
+            top: 40%;
+            right: 30%;
+            animation-delay: -12s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            25% { transform: translateY(-30px) rotate(90deg) scale(1.1); }
+            50% { transform: translateY(-10px) rotate(180deg) scale(0.9); }
+            75% { transform: translateY(-40px) rotate(270deg) scale(1.05); }
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-pink), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-pink);
+            transform: translateY(-2px);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--primary-pink);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding-top: 100px;
+            min-height: 100vh;
+        }
+        
+        .profile-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease;
+        }
+        
+        .page-title h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-pink), var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-title .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-weight: 300;
+        }
+        
+        /* Profile Layout */
+        .profile-layout {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        
+        /* Profile Card */
+        .profile-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--glass-border);
+            text-align: center;
+            animation: fadeInLeft 0.8s ease;
+            position: sticky;
+            top: 120px;
+        }
+        
+        .profile-avatar {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, var(--primary-pink), var(--accent-blue), var(--accent-purple));
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.3);
+            animation: float 6s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-avatar::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .profile-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .profile-handle {
+            font-size: 1.1rem;
+            color: var(--primary-pink);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .profile-bio {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-style: italic;
+        }
+        
+        /* Info Sections */
+        .info-sections {
+            animation: fadeInRight 0.8s ease;
+        }
+        
+        .info-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+        
+        .info-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+        
+        .info-section h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .info-section h2 i {
+            color: var(--primary-pink);
+            font-size: 1.5rem;
+        }
+        
+        /* Status Grid */
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .status-item {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+        
+        .status-item:hover {
+            background: rgba(255, 255, 255, 0.7);
+            transform: translateY(-3px);
+        }
+        
+        .status-item .label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .status-item .value {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        .status-item.special .value {
+            background: linear-gradient(45deg, var(--primary-pink), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.5rem;
+        }
+        
+        /* Likes Section */
+        .likes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+        
+        .like-item {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 15px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--glass-border);
+        }
+        
+        .like-item:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateY(-5px);
+        }
+        
+        .like-item i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-pink);
+        }
+        
+        .like-item span {
+            display: block;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        /* Social Links */
+        .social-section {
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--primary-pink), var(--accent-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3), transparent);
+            transform: scale(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .social-link:hover::before {
+            transform: scale(1);
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .profile-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .profile-card {
+                position: static;
+            }
+            
+            .page-title h1 {
+                font-size: 2.5rem;
+            }
+            
+            .profile-avatar {
+                width: 150px;
+                height: 150px;
+                font-size: 4rem;
+            }
+            
+            .status-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .likes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+    </div>
+
+    <header>
+        <nav>
+            <a href="/" class="logo">NexaLabs</a>
+            <ul class="nav-links">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/creator/" class="active" href="creator.html">Creator</a></li>
+                <li class="nav-item"><a class="nav-link" href="works.html">Works</a></li>
+                <li class="nav-item"><a class="nav-link" href="achievement.html">Achievement</a></li>
+                <li class="nav-item"><a class="nav-link" href="#social.html">Social</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="profile-container">
+            <div class="page-title">
+                <h1>PROFILE</h1>
+                <p class="subtitle">プロフィール</p>
+            </div>
+
+            <div class="profile-layout">
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <i class="fas fa-cat"></i>
+                    </div>
+                    <h1 class="profile-name">Noah von Nobelius</h1>
+                    <p class="profile-handle">@noahvonnobelius</p>
+                    <p class="profile-bio">"Energize with creativity! 🎨"</p>
+                </div>
+
+                <div class="info-sections">
+                    <div class="info-section reveal">
+                        <h2><i class="fas fa-info-circle"></i> STATUS</h2>
+                        <div class="status-grid">
+                            <div class="status-item">
+                                <div class="label">Occupation</div>
+                                <div class="value">Unemployed</div>
+                            </div>
+                            <div class="status-item">
+                                <div class="label">Birthday</div>
+                                <div class="value">04/22</div>
+                            </div>
+                            <div class="status-item special">
+                                <div class="label">Age</div>
+                                <div class="value">?????</div>
+                            </div>
+                            <div class="status-item">
+                                <div class="label">Location</div>
+                                <div class="value">Japan</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-section reveal">
+                        <h2><i class="fas fa-heart"></i> LIKES</h2>
+                        <div class="likes-grid">
+                            <div class="like-item">
+                                <i class="fas fa-pallete"></i>
+                                <span>Drawing</span>
+                            </div>
+                            <div class="like-item">
+                                <i class="fas fa-film"></i>
+                                <span>Filming</span>
+                            </div>
+                            <div class="like-item">
+                                <i class="fas fa-gaming"></i>
+                                <span>Gaming</span>
+                            </div>
+                            <div class="like-item">
+                                <i class="fas fa-teaching"></i>
+                                <span>Teaching</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-section reveal">
+                        <h2><i class="fas fa-share-alt"></i> OFFICIAL SNS</h2>
+                        <div class="social-section">
+                            <div class="social-links">
+                                <a href="#" class="social-link" title="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-link" title="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="social-link" title="YouTube">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="#" class="social-link" title="Pixiv">
+                                    <i class="fas fa-paint-brush"></i>
+                                </a>
+                                <a href="#" class="social-link" title="Discord">
+                                    <i class="fab fa-discord"></i>
+                                </a>
+                                <a href="#" class="social-link" title="TikTok">
+                                    <i class="fab fa-tiktok"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-section reveal">
+                        <h2><i class="fas fa-star"></i> ACHIEVEMENTS</h2>
+                        <div class="status-grid">
+                            <div class="status-item">
+                                <div class="label">Followers</div>
+                                <div class="value">5</div>
+                            </div>
+                            <div class="status-item">
+                                <div class="label">Artworks</div>
+                                <div class="value">0</div>
+                            </div>
+                            <div class="status-item">
+                                <div class="label">Years Active</div>
+                                <div class="value">2025</div>
+                            </div>
+                            <div class="status-item special">
+                                <div class="label">Style</div>
+                                <div class="value">GREAT</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Interactive hover effects
+        document.querySelectorAll('.status-item, .like-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.02)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Profile avatar interaction
+        const avatar = document.querySelector('.profile-avatar');
+        let isHovering = false;
+
+        avatar.addEventListener('mouseenter', () => {
+            isHovering = true;
+            avatar.style.transform = 'scale(1.05) rotate(5deg)';
+        });
+
+        avatar.addEventListener('mouseleave', () => {
+            isHovering = false;
+            avatar.style.transform = 'scale(1) rotate(0deg)';
+        });
+
+        // Add sparkle effect on social links
+        document.querySelectorAll('.social-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Create sparkle effect
+                const sparkle = document.createElement('div');
+                sparkle.style.cssText = `
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 20px;
+                    height: 20px;
+                    background: white;
+                    border-radius: 50%;
+                    pointer-events: none;
+                    animation: sparkleEffect 0.6s ease-out forwards;
+                    z-index: 1000;
+                `;
+                
+                this.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 600);
+            });
+        });
+
+        // Add CSS for sparkle animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sparkleEffect {
+                0% {
+                    transform: translate(-50%, -50%) scale(0);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translate(-50%, -50%) scale(3);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Random floating animation for avatar
+        setInterval(() => {
+            if (!isHovering) {
+                const randomX = (Math.random() - 0.5) * 10;
+                const randomY = (Math.random() - 0.5) * 10;
+                avatar.style.transform = `translate(${randomX}px, ${randomY}px) scale(1)`;
+                
+                setTimeout(() => {
+                    if (!isHovering) {
+                        avatar.style.transform = 'translate(0px, 0px) scale(1)';
+                    }
+                }, 2000);
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
