@@ -203,12 +203,17 @@
         .hero-title {
             font-size: 4rem;
             font-weight: 700;
+            background: linear-gradient(90deg, red, orange, blue, purple);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             color: white;
             margin-bottom: 1.5rem;
             line-height: 1.1;
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 0.8s ease forwards 0.4s;
+            animation: gradientMove 6s linear infinite;
         }
 
         .hero-description {
@@ -243,6 +248,9 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
         }
 
