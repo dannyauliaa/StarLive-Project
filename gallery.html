@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>スターライブ - Works</title>
+    <title>スターライブ - Gallery</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
@@ -43,8 +43,14 @@
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
-            background: var(--bg-primary);
+            background: none !important;
+            background: 
+                linear-gradient(270deg, #ff6b9d, #6a5acd, #1e90ff, #00ced1),
+                url("Assets/SummerStrinova.jpg") no-repeat center center fixed;
+            background-size: 800% 800%, cover;
+            animation: gradientShift 15s ease infinite;
             overflow-x: hidden;
+            position: relative;
         }
 
         /* Custom Scrollbar */
@@ -605,6 +611,11 @@
 
         /* Animations */
         @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -617,6 +628,18 @@
             66% { transform: translateY(-15px) rotate(240deg); }
         }
 
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%, center; }
+            50% { background-position: 100% 50%, center; }
+            100% { background-position: 0% 50%, center; }
+
+        }
         /* Responsive Design */
         @media (max-width: 768px) {
             .mobile-menu { display: flex; }
@@ -689,10 +712,11 @@
         <div class="nav-container">
             <a href="#" class="logo">StarLive</a>
             <ul class="nav-links">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="creator.html">Creator</a></li>
                 <li class="nav-item"><a class="nav-link" href="works.html">Works</a></li>
-                <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>>
+                <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="store.html">Store</a></li>
                 <li class="nav-item"><a class="nav-link" href="social.html">Social</a></li>
             </ul>
             <div class="mobile-menu">
@@ -712,14 +736,13 @@
         </div>
         
         <div class="hero-content">
-            <p class="hero-subtitle">Works </p>
+            <p class="hero-subtitle">スターライブ</p>
             <h1 class="hero-title">StarLive</h1>
             <p class="hero-description">
                 Crafting beautiful digital experiences through innovative design and creative solutions
             </p>
             <div class="hero-cta">
-                <a href="#portfolio" class="btn btn-primary">See our Work</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                <a href="#portfolio" class="btn btn-primary">See our Path</a>
             </div>
         </div>
     </section>
@@ -890,38 +913,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title" style="color: white;">Let's Work Together</h2>
-                <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.8);">
-                    Ready to bring your ideas to life? Let's discuss your next project
-                </p>
-            </div>
-            
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" placeholder="Your name">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="your@email.com">
-                </div>
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" placeholder="Project discussion">
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" placeholder="Tell me about your project..."></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Send Message</button>
-            </form>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -1019,39 +1010,7 @@
                 observer.observe(item);
             });
         });
-
-        // Form submission
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
             
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                subject: document.getElementById('subject').value,
-                message: document.getElementById('message').value
-            };
-
-            // Simple validation
-            if (!formData.name || !formData.email || !formData.message) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-
-            // Simulate form submission
-            const submitBtn = document.querySelector('.contact-form button');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-
-            setTimeout(() => {
-                alert('Thank you for your message! I\'ll get back to you soon.');
-                this.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 2000);
-        });
-
         // Mobile menu toggle (basic implementation)
         document.querySelector('.mobile-menu').addEventListener('click', function() {
             this.classList.toggle('active');
