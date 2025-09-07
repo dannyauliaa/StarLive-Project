@@ -43,8 +43,14 @@
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
-            background: var(--bg-primary);
+            background: none !important;
+            background: 
+                linear-gradient(270deg, #ff6b9d, #6a5acd, #1e90ff, #00ced1),
+                url("Assets/SummerStrinova.jpg") no-repeat center center fixed;
+            background-size: 800% 800%, cover;
+            animation: gradientShift 15s ease infinite;
             overflow-x: hidden;
+            position: relative;
         }
 
         /* Custom Scrollbar */
@@ -203,12 +209,16 @@
         .hero-title {
             font-size: 4rem;
             font-weight: 700;
-            color: white;
+            background: linear-gradient(90deg, var(--secondary-pink), var(--accent-peach), var(--accent-blue), var(--accent-purple));
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
             margin-bottom: 1.5rem;
             line-height: 1.1;
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards 0.4s;
+            animation: fadeInUp 0.8s ease forwards 0.4s, gradientMove 6s linear infinite 1s;
         }
 
         .hero-description {
@@ -538,6 +548,11 @@
 
         /* Animations */
         @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -548,6 +563,18 @@
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             33% { transform: translateY(-30px) rotate(120deg); }
             66% { transform: translateY(-15px) rotate(240deg); }
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%, center; }
+            50% { background-position: 100% 50%, center; }
+            100% { background-position: 0% 50%, center; }
         }
 
         /* Responsive Design */
@@ -626,6 +653,7 @@
                 <li class="nav-item"><a class="nav-link" href="creator.html">Creator</a></li>
                 <li class="nav-item"><a class="nav-link" href="works.html">Works</a></li>
                 <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="store.html">Store</a></li>
                 <li class="nav-item"><a class="nav-link" href="social.html">Social</a></li>
             </ul>
             <div class="mobile-menu">
