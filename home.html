@@ -210,12 +210,16 @@
         .hero-title {
             font-size: 4rem;
             font-weight: 700;
-            color: white;
+            background: linear-gradient(90deg, var(--secondary-pink), var(--accent-peach), var(--accent-blue), var(--accent-purple));
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
             margin-bottom: 1.5rem;
             line-height: 1.1;
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards 0.4s;
+            animation: fadeInUp 0.8s ease forwards 0.4s, gradientMove 6s linear infinite 1s;
         }
 
         .hero-description {
