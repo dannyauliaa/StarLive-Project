@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amashiro Goods</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e74c3c;
+        }
+
+        .main-content {
+            padding: 40px 0;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title h1 {
+            font-size: 32px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .page-title p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            position: relative;
+        }
+
+        .add-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .add-icon:hover {
+            background: #e74c3c;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .product-price {
+            font-size: 16px;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* Popup Styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .popup-overlay.active {
+            display: flex;
+        }
+
+        .popup-content {
+            background: white;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            display: flex;
+            position: relative;
+            animation: popupSlide 0.3s ease-out;
+        }
+
+        @keyframes popupSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .popup-image {
+            flex: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            min-height: 400px;
+        }
+
+        .popup-details {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+            transition: all 0.3s;
+        }
+
+        .popup-close:hover {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .popup-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .popup-price {
+            font-size: 20px;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .popup-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .popup-options {
+            margin-bottom: 25px;
+        }
+
+        .option-group {
+            margin-bottom: 20px;
+        }
+
+        .option-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .option-select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .option-select:focus {
+            outline: none;
+            border-color: #e74c3c;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .quantity-btn:hover {
+            border-color: #e74c3c;
+            color: #e74c3c;
+        }
+
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .add-to-cart-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart-btn:hover {
+            background: #c0392b;
+        }
+
+        @media (max-width: 768px) {
+            .popup-content {
+                flex-direction: column;
+                width: 95%;
+                max-height: 90vh;
+            }
+
+            .popup-image {
+                min-height: 250px;
+            }
+
+            .popup-details {
+                padding: 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Amashiro</div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#goods">Goods</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-title">
+                <h1>Our Goods Collection</h1>
+                <p>Discover our carefully curated selection of premium products</p>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <span>Premium Notebook</span>
+                        <div class="add-icon" onclick="openPopup('Premium Notebook', 'Rp 89.000', 'Notebook berkualitas tinggi dengan kertas premium dan cover yang elegan. Cocok untuk mencatat ide-ide kreatif dan meeting penting.')">+</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Premium Notebook</div>
+                        <div class="product-price">Rp 89.000</div>
+                        <div class="product-description">Notebook berkualitas tinggi dengan desain minimalis</div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <span>Designer Mug</span>
+                        <div class="add-icon" onclick="openPopup('Designer Mug', 'Rp 125.000', 'Mug keramik dengan desain eksklusif yang sempurna untuk kopi atau teh favorit Anda. Tahan panas dan mudah dibersihkan.')">+</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Designer Mug</div>
+                        <div class="product-price">Rp 125.000</div>
+                        <div class="product-description">Mug keramik dengan desain eksklusif dan unik</div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <span>Eco Tote Bag</span>
+                        <div class="add-icon" onclick="openPopup('Eco Tote Bag', 'Rp 75.000', 'Tas ramah lingkungan yang terbuat dari bahan canvas berkualitas tinggi. Kuat, tahan lama, dan stylish untuk berbagai keperluan sehari-hari.')">+</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Eco Tote Bag</div>
+                        <div class="product-price">Rp 75.000</div>
+                        <div class="product-description">Tas ramah lingkungan dengan bahan canvas premium</div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        <span>Wireless Charger</span>
+                        <div class="add-icon" onclick="openPopup('Wireless Charger', 'Rp 199.000', 'Wireless charger dengan teknologi fast charging yang kompatibel dengan berbagai device. Desain sleek dan modern dengan LED indicator.')">+</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Wireless Charger</div>
+                        <div class="product-price">Rp 199.000</div>
+                        <div class="product-description">Charger nirkabel dengan teknologi fast charging</div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                        <span>Artisan Keychain</span>
+                        <div class="add-icon" onclick="openPopup('Artisan Keychain', 'Rp 45.000', 'Gantungan kunci handmade dengan detail yang indah. Terbuat dari bahan berkualitas tinggi dan finishing yang halus. Cocok sebagai souvenir atau hadiah.')">+</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Artisan Keychain</div>
+                        <div class="product-price">Rp 45.000</div>
+                        <div class="product-description">Gantungan kunci handmade dengan detail indah</div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);">
+                        <span>Smart Phone Stand</span>
+                        <div class="add-icon" onclick="openPopup('Smart Phone Stand', 'Rp 65.000', 'Stand smartphone yang dapat disesuaikan sudutnya, cocok untuk video call, menonton, atau menggunakan phone dalam posisi hands-free. Bahan aluminium yang kokoh.')">+</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Smart Phone Stand</div>
+                        <div class="product-price">Rp 65.000</div>
+                        <div class="product-description">Stand smartphone adjustable dengan bahan premium</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Popup Window -->
+    <div class="popup-overlay" id="popupOverlay" onclick="closePopup(event)">
+        <div class="popup-content" onclick="event.stopPropagation()">
+            <button class="popup-close" onclick="closePopup()">&times;</button>
+            <div class="popup-image" id="popupImage">
+                <span id="popupImageText">Premium Notebook</span>
+            </div>
+            <div class="popup-details">
+                <h2 class="popup-title" id="popupTitle">Premium Notebook</h2>
+                <div class="popup-price" id="popupPrice">Rp 89.000</div>
+                <div class="popup-description" id="popupDescription">
+                    Notebook berkualitas tinggi dengan kertas premium dan cover yang elegan.
+                </div>
+                <div class="popup-options">
+                    <div class="option-group">
+                        <label class="option-label">Warna:</label>
+                        <select class="option-select">
+                            <option>Hitam</option>
+                            <option>Putih</option>
+                            <option>Biru</option>
+                            <option>Merah</option>
+                        </select>
+                    </div>
+                    <div class="option-group">
+                        <label class="option-label">Ukuran:</label>
+                        <select class="option-select">
+                            <option>Small</option>
+                            <option>Medium</option>
+                            <option>Large</option>
+                        </select>
+                    </div>
+                    <div class="option-group">
+                        <label class="option-label">Quantity:</label>
+                        <div class="quantity-control">
+                            <button class="quantity-btn" onclick="updateQuantity(-1)">-</button>
+                            <input type="number" value="1" min="1" class="quantity-input" id="quantityInput">
+                            <button class="quantity-btn" onclick="updateQuantity(1)">+</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart()">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentProduct = {};
+
+        function openPopup(title, price, description) {
+            currentProduct = { title, price, description };
+            
+            document.getElementById('popupTitle').textContent = title;
+            document.getElementById('popupPrice').textContent = price;
+            document.getElementById('popupDescription').textContent = description;
+            document.getElementById('popupImageText').textContent = title;
+            document.getElementById('quantityInput').value = 1;
+            
+            document.getElementById('popupOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePopup(event) {
+            if (event && event.target !== document.getElementById('popupOverlay')) {
+                return;
+            }
+            
+            document.getElementById('popupOverlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateQuantity(change) {
+            const input = document.getElementById('quantityInput');
+            let currentValue = parseInt(input.value) || 1;
+            currentValue += change;
+            
+            if (currentValue < 1) currentValue = 1;
+            
+            input.value = currentValue;
+        }
+
+        function addToCart() {
+            const quantity = document.getElementById('quantityInput').value;
+            const color = document.querySelector('.option-select').value;
+            const size = document.querySelectorAll('.option-select')[1].value;
+            
+            alert(`Added ${quantity}x ${currentProduct.title} (${color}, ${size}) to cart!`);
+            closePopup();
+        }
+
+        // Close popup with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closePopup();
+            }
+        });
+    </script>
+</body>
+</html>
