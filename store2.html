@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakura Store - Japanese Goods</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, #ffeef8 0%, #fff0f5 50%, #ffe4e1 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(255, 182, 193, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b9d;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, #ff6b9d, #c44569);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        /* Popup Button */
+        .popup-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(255, 107, 157, 0.6);
+        }
+
+        .popup-btn::before {
+            content: '☰';
+            font-size: 20px;
+        }
+
+        /* Popup Window */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1002;
+            backdrop-filter: blur(5px);
+        }
+
+        .popup-window {
+            position: fixed;
+            top: 50%;
+            right: 50px;
+            transform: translateY(-50%);
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(255, 107, 157, 0.3);
+            overflow: hidden;
+            width: 500px;
+            max-width: 90vw;
+            height: 400px;
+            display: flex;
+            animation: slideInRight 0.4s ease;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateY(-50%) translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(-50%) translateX(0);
+            }
+        }
+
+        .popup-image {
+            flex: 1;
+            background: linear-gradient(135deg, #ffeef8 0%, #ffe4e1 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .popup-image-content {
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><radialGradient id="bg" cx="50%" cy="50%"><stop offset="0%" style="stop-color:%23ff6b9d;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%23c44569;stop-opacity:0.2"/></radialGradient></defs><rect width="400" height="400" fill="url(%23bg)"/><circle cx="100" cy="80" r="8" fill="%23ff6b9d" opacity="0.6"/><circle cx="300" cy="120" r="6" fill="%23c44569" opacity="0.5"/><circle cx="80" cy="200" r="10" fill="%23ff6b9d" opacity="0.4"/><circle cx="320" cy="250" r="7" fill="%23c44569" opacity="0.6"/><circle cx="150" cy="320" r="9" fill="%23ff6b9d" opacity="0.5"/><circle cx="280" cy="350" r="5" fill="%23c44569" opacity="0.7"/><path d="M200,150 Q180,120 160,150 Q180,180 200,150 Q220,120 240,150 Q220,180 200,150" fill="%23ff6b9d" opacity="0.3"/><path d="M200,250 Q180,220 160,250 Q180,280 200,250 Q220,220 240,250 Q220,280 200,250" fill="%23c44569" opacity="0.2"/></svg>') center/cover,
+            linear-gradient(135deg, #ffeef8 0%, #ffe4e1 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .popup-image-icon {
+            font-size: 80px;
+            margin-bottom: 10px;
+            filter: drop-shadow(2px 2px 4px rgba(255, 107, 157, 0.3));
+            animation: gentle-float 3s ease-in-out infinite;
+        }
+
+        .popup-image-text {
+            color: #c44569;
+            font-weight: 500;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        @keyframes gentle-float {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-5px) scale(1.05); }
+        }
+
+        .popup-menu {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .popup-menu h3 {
+            color: #c44569;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .menu-item {
+            padding: 12px 0;
+            color: #555;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 107, 157, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .menu-item:hover {
+            color: #ff6b9d;
+            padding-left: 10px;
+            background: rgba(255, 107, 157, 0.1);
+            border-radius: 8px;
+        }
+
+        .menu-item::before {
+            content: '❀';
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-item:hover::before {
+            opacity: 1;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #ff6b9d;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Products Grid */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b9d, #c44569);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 182, 193, 0.3);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #ffeef8 0%, #ffe4e1 100%);
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ff6b9d;
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+        }
+
+        /* Categories */
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 10px 20px;
+            border: 2px solid #ff6b9d;
+            background: transparent;
+            color: #ff6b9d;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .popup-window {
+                width: 90vw;
+                right: 5vw;
+                height: 300px;
+            }
+            
+            .popup-window {
+                flex-direction: column;
+                height: auto;
+                max-height: 80vh;
+            }
+            
+            .popup-image {
+                height: 120px;
+            }
+            
+            .popup-image::before {
+                font-size: 40px;
+            }
+        }
+
+        /* Floating elements */
+        .floating-sakura {
+            position: fixed;
+            pointer-events: none;
+            font-size: 20px;
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Sakura -->
+    <div class="floating-sakura" style="top: 10%; left: 5%; animation-delay: 0s;">🌸</div>
+    <div class="floating-sakura" style="top: 20%; right: 10%; animation-delay: 2s;">🌺</div>
+    <div class="floating-sakura" style="top: 60%; left: 8%; animation-delay: 4s;">🌸</div>
+    <div class="floating-sakura" style="bottom: 20%; right: 15%; animation-delay: 3s;">🌺</div>
+
+    <header>
+        <nav>
+            <div class="logo">Sakura Store</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Popup Button -->
+    <button class="popup-btn" onclick="openPopup()"></button>
+
+    <!-- Popup Overlay -->
+    <div class="popup-overlay" id="popupOverlay" onclick="closePopup()">
+        <div class="popup-window" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="closePopup()">&times;</button>
+            <div class="popup-image">
+                <div class="popup-image-content">
+                    <div class="popup-image-icon">🏮</div>
+                    <div class="popup-image-text">Discover Traditional<br>Japanese Beauty</div>
+                </div>
+            </div>
+            <div class="popup-menu">
+                <h3>Quick Menu</h3>
+                <a href="#" class="menu-item">New Arrivals</a>
+                <a href="#" class="menu-item">Best Sellers</a>
+                <a href="#" class="menu-item">Traditional Items</a>
+                <a href="#" class="menu-item">Modern Collection</a>
+                <a href="#" class="menu-item">Gift Sets</a>
+                <a href="#" class="menu-item">Sale Items</a>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section class="hero">
+            <h1>Japanese Treasures</h1>
+            <p>Discover authentic Japanese goods that bring the beauty and tradition of Japan to your everyday life.</p>
+        </section>
+
+        <div class="categories">
+            <button class="category-btn active">All</button>
+            <button class="category-btn">Traditional</button>
+            <button class="category-btn">Modern</button>
+            <button class="category-btn">Home Decor</button>
+            <button class="category-btn">Fashion</button>
+            <button class="category-btn">Food</button>
+        </div>
+
+        <section class="products">
+            <div class="product-card">
+                <div class="product-image">🏮</div>
+                <h3 class="product-title">Traditional Lantern</h3>
+                <p class="product-price">¥3,500</p>
+                <p class="product-description">Handcrafted traditional Japanese lantern perfect for creating a warm, authentic atmosphere in your home.</p>
+                <button class="btn">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">🍵</div>
+                <h3 class="product-title">Matcha Tea Set</h3>
+                <p class="product-price">¥8,900</p>
+                <p class="product-description">Complete matcha tea ceremony set including bowl, whisk, and premium matcha powder from Kyoto.</p>
+                <button class="btn">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">👘</div>
+                <h3 class="product-title">Silk Kimono</h3>
+                <p class="product-price">¥25,000</p>
+                <p class="product-description">Elegant silk kimono with beautiful cherry blossom patterns, perfect for special occasions.</p>
+                <button class="btn">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">🥢</div>
+                <h3 class="product-title">Wooden Chopsticks Set</h3>
+                <p class="product-price">¥1,200</p>
+                <p class="product-description">Premium wooden chopsticks made from sustainable bamboo with elegant lacquer finish.</p>
+                <button class="btn">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">🎋</div>
+                <h3 class="product-title">Bamboo Fountain</h3>
+                <p class="product-price">¥15,600</p>
+                <p class="product-description">Tranquil bamboo water fountain that brings the peaceful sounds of nature to your garden.</p>
+                <button class="btn">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">🌸</div>
+                <h3 class="product-title">Sakura Dinnerware</h3>
+                <p class="product-price">¥6,800</p>
+                <p class="product-description">Beautiful ceramic dinnerware set featuring delicate cherry blossom designs.</p>
+                <button class="btn">Add to Cart</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function openPopup() {
+            document.getElementById('popupOverlay').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePopup() {
+            document.getElementById('popupOverlay').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close popup with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePopup();
+            }
+        });
+
+        // Category button functionality
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelector('.category-btn.active').classList.remove('active');
+                this.classList.add('active');
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add to cart functionality
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
+                this.textContent = 'Added!';
+                setTimeout(() => {
+                    this.style.background = 'linear-gradient(135deg, #ff6b9d, #c44569)';
+                    this.textContent = 'Add to Cart';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
