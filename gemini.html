@@ -1,218 +1,594 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Jepang Ceria</title>
+    <title>スターライブ | StarLive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* --- General Styles --- */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@400;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         :root {
-            --primary-color: #FFC0CB; /* Pink Sakura */
-            --secondary-color: #FFE5E5; /* Light Pink */
-            --accent-color: #FF7F50; /* Coral for buttons */
-            --text-color: #333;
-            --background-color: #FFF5F5; /* Off-white / Cream */
+            --primary-light: #ffeaa7;
+            --secondary-light: #fab1a0;
+            --accent-light: #fd79a8;
+            --bg-light: #fff5f5;
+            --text-dark: #2d3436;
+            --text-medium: #636e72;
+            --white: #ffffff;
+            --shadow-soft: 0 4px 20px rgba(253, 121, 168, 0.15);
+            --shadow-hover: 0 8px 30px rgba(253, 121, 168, 0.25);
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+            background: var(--bg-light);
             overflow-x: hidden;
         }
 
-        /* --- Header & Navigation --- */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
+        /* =================== ANIMATED BACKGROUND =================== */
+        /*
+        CATATAN ANIMASI BACKGROUND:
+        1. Gradient bergerak dengan 'bgShift' - 20s infinite
+        2. Floating bubbles dengan 'float' - durasi random 8-15s
+        3. Subtle particles dengan 'drift' - movement halus
+        4. Wave patterns dengan CSS clip-path
+        
+        CUSTOM MODIFICATIONS:
+        - Ubah --primary-light, --secondary-light untuk warna berbeda
+        - Adjust animation-duration untuk kecepatan
+        - Modify transform values untuk intensitas gerakan
+        - Change opacity untuk transparansi
+        */
+        .animated-bg {
             position: fixed;
-            width: 100%;
             top: 0;
-            z-index: 1000;
-        }
-        .logo {
-            font-family: 'Kaisei Decol', serif;
-            font-size: 2.5em;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-        }
-        .nav a {
-            color: var(--text-color);
-            text-decoration: none;
-            margin-left: 30px;
-            font-weight: 600;
-            position: relative;
-        }
-        .nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            display: block;
-            margin-top: 5px;
-            background: var(--accent-color);
-            transition: width .3s ease;
-        }
-        .nav a:hover::after {
-            width: 100%;
-        }
-
-        /* --- Hero Section --- */
-        .hero-section {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            left: 0;
+            width: 100vw;
             height: 100vh;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(to bottom, #fff, var(--background-color));
-        }
-        .hero-section h1 {
-            font-size: 4em;
-            font-family: 'Kaisei Decol', serif;
-            color: var(--primary-color);
-            text-shadow: 3px 3px 5px rgba(0,0,0,0.1);
-            margin: 0;
-        }
-        .hero-section p {
-            font-size: 1.2em;
-            max-width: 600px;
-            line-height: 1.6;
-            margin-top: 20px;
+            z-index: -2;
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary-light), var(--accent-light), var(--white));
+            background-size: 300% 300%;
+            animation: bgShift 20s ease infinite;
         }
 
-        /* --- Floating Text --- */
-        .floating-text {
+        @keyframes bgShift {
+            0% { background-position: 0% 50%; }
+            33% { background-position: 100% 0%; }
+            66% { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .floating-elements {
             position: fixed;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%) rotate(90deg);
-            font-family: 'Kaisei Decol', serif;
-            font-size: 3em;
-            color: rgba(255, 192, 203, 0.4);
-            z-index: 500;
-            user-select: none;
-        }
-
-        /* --- Content Sections --- */
-        .section {
-            padding: 100px 50px;
-            text-align: center;
-            max-width: 900px;
-            margin: auto;
-        }
-        .section h2 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            font-family: 'Kaisei Decol', serif;
-        }
-        .section p {
-            line-height: 1.8;
-            text-align: justify;
-        }
-
-        /* --- Sakura Animation --- */
-        .sakura-container {
-            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            overflow: hidden;
-            z-index: 1;
+            z-index: -1;
         }
-        .sakura-petal {
+
+        .bubble {
             position: absolute;
-            background-color: rgba(255, 192, 203, 0.8);
             border-radius: 50%;
-            width: 12px;
-            height: 12px;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(253, 121, 168, 0.2));
+            animation: float 12s infinite ease-in-out;
+            backdrop-filter: blur(2px);
+        }
+
+        .bubble:nth-child(1) {
+            width: 120px;
+            height: 120px;
+            top: 10%;
+            left: 15%;
+            animation-delay: -2s;
+            animation-duration: 15s;
+        }
+
+        .bubble:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            top: 60%;
+            right: 20%;
+            animation-delay: -5s;
+            animation-duration: 10s;
+        }
+
+        .bubble:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 60%;
+            animation-delay: -8s;
+            animation-duration: 12s;
+        }
+
+        .bubble:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            top: 30%;
+            right: 50%;
+            animation-delay: -3s;
+            animation-duration: 14s;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) rotate(0deg);
+                opacity: 0.7;
+            }
+            25% { 
+                transform: translateY(-30px) translateX(20px) rotate(90deg);
+                opacity: 1;
+            }
+            50% { 
+                transform: translateY(-60px) translateX(-10px) rotate(180deg);
+                opacity: 0.8;
+            }
+            75% { 
+                transform: translateY(-20px) translateX(-30px) rotate(270deg);
+                opacity: 0.9;
+            }
+        }
+
+        /* =================== MOVING スターライブ TEXT =================== */
+        .jp-text-moving {
+            position: fixed;
+            right: 3rem;
+            top: 50%;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--text-medium);
+            z-index: 100;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.3em;
+            opacity: 0.7;
+            user-select: none;
+        }
+
+        /* =================== MAIN LAYOUT =================== */
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Header Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 2rem;
+            padding: 4rem 3rem;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            max-width: 800px;
+            transform: translateY(20px);
+            animation: slideUp 1s ease 0.3s both;
+        }
+
+        .main-title {
+            font-size: 4rem;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+
+        .main-title .jp-text {
+            background: linear-gradient(135deg, var(--accent-light), var(--secondary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-medium);
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Content Cards */
+        .content-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            border-radius: 1.5rem;
+            padding: 3rem;
+            margin: 4rem 0;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transform: translateY(30px);
             opacity: 0;
-            animation: fall 15s linear infinite;
+            transition: all 0.8s ease;
         }
-        @keyframes fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
+
+        .content-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-title {
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-light), var(--secondary-light));
+            border-radius: 2px;
+        }
+
+        .card-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-medium);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Feature Grid */
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 1.2rem;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--accent-light), var(--secondary-light));
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .feature-desc {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer-section {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(15px);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            color: var(--text-medium);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
                 opacity: 0;
+                transform: translateY(40px);
             }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
-        .sakura-petal:nth-child(2n) { background-color: rgba(255, 220, 220, 0.7); }
-        .sakura-petal:nth-child(3n) { background-color: rgba(255, 170, 170, 0.9); }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 0 1.5rem;
+            }
+
+            .jp-text-moving {
+                right: 1.5rem;
+                font-size: 1.4rem;
+            }
+
+            .hero-content {
+                padding: 3rem 2rem;
+            }
+
+            .main-title {
+                font-size: 2.8rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .content-card {
+                padding: 2rem;
+                margin: 2.5rem 0;
+            }
+
+            .features-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 2.2rem;
+            }
+
+            .jp-text-moving {
+                font-size: 1.2rem;
+                right: 1rem;
+            }
+
+            .hero-content {
+                padding: 2.5rem 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+    <div class="floating-elements">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
 
-    <header class="header">
-        <div class="logo">星ライブ</div>
-        <nav class="nav">
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+    <!-- Moving Japanese Text -->
+    <div class="jp-text-moving" id="movingText">スターライブ</div>
 
-    <div class="floating-text">スターライブ</div>
-
-    <main>
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Hero Section -->
         <section class="hero-section">
-            <div class="sakura-container"></div>
-            <h1>星のような輝きを</h1>
-            <p>Temukan inspirasi dan keindahan dalam setiap proyek kami. Selamat datang di dunia yang penuh warna!</p>
+            <div class="hero-content">
+                <h1 class="main-title">
+                    <span class="jp-text">スターライブ</span>
+                </h1>
+                <p class="subtitle">
+                    Crafting beautiful digital experiences through innovative design and creative solutions
+                </p>
+            </div>
         </section>
 
-        <section id="about" class="section">
-            <h2>Tentang Kami</h2>
-            <p>Kami adalah tim kreatif yang berdedikasi untuk menciptakan karya-karya digital yang tidak hanya fungsional, tapi juga memiliki nilai estetika tinggi. Kami percaya bahwa setiap detail kecil memiliki kekuatan untuk menceritakan kisah yang besar. Dari desain web hingga ilustrasi, kami berusaha membawa visi Anda menjadi kenyataan yang cerah dan hidup.</p>
-        </section>
+        <!-- About Section -->
+        <div class="content-card">
+            <h2 class="card-title">About StarLive</h2>
+            <p class="card-text">
+                Hello, we are StarLive, a creative group of active but often free students. This group was formed to reflect on the future, while still striving to develop ideas and innovations.
+            </p>
+            <p class="card-text">
+                This website also includes profiles of each member, project plans, documentation, and contact information to learn more. Although the features aren't fully functional, haha😂...
+            </p>
+        </div>
 
-        <section id="projects" class="section">
-            <h2>Proyek Terbaru</h2>
-            <p>Lihatlah beberapa karya terbaik kami yang penuh dengan semangat dan kreativitas. Setiap proyek adalah cerminan dari komitmen kami terhadap inovasi dan kualitas.</p>
-            </section>
+        <!-- Features Section -->
+        <div class="content-card">
+            <h2 class="card-title">What We Offer</h2>
+            <div class="features-container">
+                <div class="feature-item">
+                    <div class="feature-icon">👥</div>
+                    <h3 class="feature-title">Member Profiles</h3>
+                    <p class="feature-desc">Profiles of each member, project plans, documentation</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📋</div>
+                    <h3 class="feature-title">Project Plans</h3>
+                    <p class="feature-desc">Innovative ideas and future-focused development</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📄</div>
+                    <h3 class="feature-title">Documentation</h3>
+                    <p class="feature-desc">Comprehensive guides and learning materials</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✉️</div>
+                    <h3 class="feature-title">Contact Information</h3>
+                    <p class="feature-desc">Connect with us to learn more about StarLive</p>
+                </div>
+            </div>
+        </div>
 
-        <section id="contact" class="section">
-            <h2>Hubungi Kami</h2>
-            <p>Tertarik untuk bekerja sama? Jangan ragu untuk menghubungi kami. Kami selalu siap untuk mendengarkan ide-ide brilian Anda dan mewujudkannya bersama.</p>
-        </section>
-    </main>
-    
+        <!-- Footer -->
+        <footer class="footer-section">
+            <div class="footer-card">
+                <p class="footer-text">
+                    This website was created based on limited understanding and capabilities. Please understand, thank you.
+                </p>
+                <p class="footer-text">
+                    © 2024 StarLive - Made with ❤️ by creative students
+                </p>
+            </div>
+        </footer>
+    </div>
+
     <script>
-        // --- JavaScript untuk Animasi Sakura ---
-        const sakuraContainer = document.querySelector('.sakura-container');
-        function createSakuraPetal() {
-            const petal = document.createElement('div');
-            petal.classList.add('sakura-petal');
-            petal.style.left = `${Math.random() * 100}vw`;
-            petal.style.animationDuration = `${Math.random() * 10 + 5}s`;
-            petal.style.animationDelay = `${Math.random() * 5}s`;
-            sakuraContainer.appendChild(petal);
+        // =================== SMOOTH SCROLL ANIMATION FOR MOVING TEXT ===================
+        let ticking = false;
 
-            setTimeout(() => {
-                petal.remove();
-            }, 15000);
+        function updateMovingText() {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.3; // Negative for upward movement
+            const movingText = document.getElementById('movingText');
+            
+            // Move text based on scroll
+            movingText.style.transform = `translateY(calc(-50% + ${rate}px))`;
+            
+            // Fade based on scroll position
+            const opacity = Math.max(0.3, 1 - (scrolled / 1000));
+            movingText.style.opacity = opacity;
         }
 
-        setInterval(createSakuraPetal, 500);
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateMovingText);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', () => {
+            requestTick();
+            ticking = false;
+        });
+
+        // =================== INTERSECTION OBSERVER FOR CARD ANIMATIONS ===================
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -10% 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all content cards
+        document.querySelectorAll('.content-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // =================== DYNAMIC BUBBLE INTERACTION ===================
+        document.addEventListener('mousemove', (e) => {
+            const bubbles = document.querySelectorAll('.bubble');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+
+            bubbles.forEach((bubble, index) => {
+                const speed = (index + 1) * 0.02;
+                const x = (mouseX * 50) * speed;
+                const y = (mouseY * 50) * speed;
+                
+                bubble.style.transform += ` translate(${x}px, ${y}px)`;
+            });
+        });
+
+        // =================== ENHANCED FLOATING ANIMATION ===================
+        function randomizeBubbles() {
+            const bubbles = document.querySelectorAll('.bubble');
+            
+            bubbles.forEach((bubble, index) => {
+                // Random animation duration
+                const duration = 8 + Math.random() * 7;
+                bubble.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                const delay = Math.random() * -10;
+                bubble.style.animationDelay = `${delay}s`;
+                
+                // Random starting position adjustment
+                const randomX = Math.random() * 100;
+                const randomY = Math.random() * 100;
+                
+                setTimeout(() => {
+                    bubble.style.left = `${randomX}%`;
+                    bubble.style.top = `${randomY}%`;
+                }, index * 500);
+            });
+        }
+
+        // Initialize random bubble behavior
+        randomizeBubbles();
+
+        // =================== SMOOTH SCROLLING FOR INTERNAL LINKS ===================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // =================== PERFORMANCE OPTIMIZATION ===================
+        // Reduce animations when user prefers reduced motion
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('.bubble').forEach(bubble => {
+                bubble.style.animation = 'none';
+            });
+            document.querySelector('.animated-bg').style.animation = 'none';
+        }
     </script>
 </body>
 </html>
