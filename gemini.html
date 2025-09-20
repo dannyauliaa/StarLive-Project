@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Jepang Ceria</title>
+    <style>
+        /* --- General Styles --- */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #FFC0CB; /* Pink Sakura */
+            --secondary-color: #FFE5E5; /* Light Pink */
+            --accent-color: #FF7F50; /* Coral for buttons */
+            --text-color: #333;
+            --background-color: #FFF5F5; /* Off-white / Cream */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* --- Header & Navigation --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+        .nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 600;
+            position: relative;
+        }
+        .nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            background: var(--accent-color);
+            transition: width .3s ease;
+        }
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #fff, var(--background-color));
+        }
+        .hero-section h1 {
+            font-size: 4em;
+            font-family: 'Kaisei Decol', serif;
+            color: var(--primary-color);
+            text-shadow: 3px 3px 5px rgba(0,0,0,0.1);
+            margin: 0;
+        }
+        .hero-section p {
+            font-size: 1.2em;
+            max-width: 600px;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+
+        /* --- Floating Text --- */
+        .floating-text {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%) rotate(90deg);
+            font-family: 'Kaisei Decol', serif;
+            font-size: 3em;
+            color: rgba(255, 192, 203, 0.4);
+            z-index: 500;
+            user-select: none;
+        }
+
+        /* --- Content Sections --- */
+        .section {
+            padding: 100px 50px;
+            text-align: center;
+            max-width: 900px;
+            margin: auto;
+        }
+        .section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-family: 'Kaisei Decol', serif;
+        }
+        .section p {
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* --- Sakura Animation --- */
+        .sakura-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .sakura-petal {
+            position: absolute;
+            background-color: rgba(255, 192, 203, 0.8);
+            border-radius: 50%;
+            width: 12px;
+            height: 12px;
+            opacity: 0;
+            animation: fall 15s linear infinite;
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .sakura-petal:nth-child(2n) { background-color: rgba(255, 220, 220, 0.7); }
+        .sakura-petal:nth-child(3n) { background-color: rgba(255, 170, 170, 0.9); }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">星ライブ</div>
+        <nav class="nav">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="floating-text">スターライブ</div>
+
+    <main>
+        <section class="hero-section">
+            <div class="sakura-container"></div>
+            <h1>星のような輝きを</h1>
+            <p>Temukan inspirasi dan keindahan dalam setiap proyek kami. Selamat datang di dunia yang penuh warna!</p>
+        </section>
+
+        <section id="about" class="section">
+            <h2>Tentang Kami</h2>
+            <p>Kami adalah tim kreatif yang berdedikasi untuk menciptakan karya-karya digital yang tidak hanya fungsional, tapi juga memiliki nilai estetika tinggi. Kami percaya bahwa setiap detail kecil memiliki kekuatan untuk menceritakan kisah yang besar. Dari desain web hingga ilustrasi, kami berusaha membawa visi Anda menjadi kenyataan yang cerah dan hidup.</p>
+        </section>
+
+        <section id="projects" class="section">
+            <h2>Proyek Terbaru</h2>
+            <p>Lihatlah beberapa karya terbaik kami yang penuh dengan semangat dan kreativitas. Setiap proyek adalah cerminan dari komitmen kami terhadap inovasi dan kualitas.</p>
+            </section>
+
+        <section id="contact" class="section">
+            <h2>Hubungi Kami</h2>
+            <p>Tertarik untuk bekerja sama? Jangan ragu untuk menghubungi kami. Kami selalu siap untuk mendengarkan ide-ide brilian Anda dan mewujudkannya bersama.</p>
+        </section>
+    </main>
+    
+    <script>
+        // --- JavaScript untuk Animasi Sakura ---
+        const sakuraContainer = document.querySelector('.sakura-container');
+        function createSakuraPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('sakura-petal');
+            petal.style.left = `${Math.random() * 100}vw`;
+            petal.style.animationDuration = `${Math.random() * 10 + 5}s`;
+            petal.style.animationDelay = `${Math.random() * 5}s`;
+            sakuraContainer.appendChild(petal);
+
+            setTimeout(() => {
+                petal.remove();
+            }, 15000);
+        }
+
+        setInterval(createSakuraPetal, 500);
+    </script>
+</body>
+</html>
