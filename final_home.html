@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - StarLive</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Particle Container -->
+    <div id="particles"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <h1>StarLive</h1>
+            </div>
+            
+            <div class="header-season-selector">
+                <button onclick="changeSeason('spring')" class="season-icon-btn active" data-season="spring" title="Spring">🌸</button>
+                <button onclick="changeSeason('summer')" class="season-icon-btn" data-season="summer" title="Summer">🍀</button>
+                <button onclick="changeSeason('autumn')" class="season-icon-btn" data-season="autumn" title="Autumn">🍁</button>
+                <button onclick="changeSeason('winter')" class="season-icon-btn" data-season="winter" title="Winter">❄️</button>
+            </div>
+            
+            <div class="header-clock">
+                <div id="header-date" class="header-date"></div>
+                <div id="header-time" class="header-time"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="content-wrapper">
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <h2>Selamat Datang di Japanese Nature</h2>
+                <p class="subtitle">四季の美しさ - Keindahan Empat Musim</p>
+                
+                <div class="nature-divider"></div>
+                
+                <p>
+                    Jepang dikenal dengan keindahan alamnya yang berganti mengikuti empat musim. Setiap musim membawa keunikan dan pesona tersendiri, dari sakura yang mekar di musim semi hingga salju yang turun lembut di musim dingin.
+                </p>
+                
+                <p>
+                    Website ini menghadirkan pengalaman visual yang memukau, dimana Anda dapat merasakan atmosfer setiap musim di Jepang. Nikmati ketenangan dan keharmonisan alam Jepang yang legendaris melalui tampilan interaktif kami.
+                </p>
+                
+                <p>
+                    Pilih musim favorit Anda di bagian atas dan rasakan bagaimana alam berubah dengan indahnya. Setiap musim memiliki karakteristik unik yang mencerminkan filosofi Jepang tentang keseimbangan dan keindahan alami.
+                </p>
+            </div>
+
+            <!-- Season Info Card -->
+            <div class="season-info-card">
+                <span id="season-icon" class="season-icon-large">🌸</span>
+                <h2 id="season-title">Spring Season</h2>
+                <p id="season-description">Cherry blossoms bloom across the landscape</p>
+                
+                <div class="season-details">
+                    <div class="season-detail-item">
+                        <h4>🗓️ Periode</h4>
+                        <p id="season-period-text">Maret - Mei</p>
+                    </div>
+                    <div class="season-detail-item">
+                        <h4>🌡️ Karakteristik</h4>
+                        <p id="season-characteristics">Udara hangat, bunga bermekaran</p>
+                    </div>
+                    <div class="season-detail-item">
+                        <h4>🎎 Tradisi</h4>
+                        <p id="season-traditions">Hanami (melihat bunga sakura)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🌸</span>
+                    <h3>Pengalaman Visual</h3>
+                    <p>Nikmati efek visual yang memukau dengan partikel-partikel yang jatuh sesuai musim yang dipilih, menciptakan suasana autentik Jepang.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🎨</span>
+                    <h3>Desain Minimalis</h3>
+                    <p>Terinspirasi dari filosofi wabi-sabi Jepang, desain kami mengedepankan kesederhanaan dan keindahan alami.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">⏰</span>
+                    <h3>Real-time Update</h3>
+                    <p>Waktu dan tanggal ditampilkan secara real-time, mengingatkan kita akan perjalanan waktu dan perubahan musim.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Tentang Kami</h3>
+                <p>Japanese Nature adalah platform yang didedikasikan untuk membawa keindahan empat musim Jepang ke dalam pengalaman digital yang immersive.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Navigasi</h3>
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#contact">Contact</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Kontak</h3>
+                <a href="mailto:info@japanesenature.com">info@japanesenature.com</a>
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 StarLive. All Rights Reserved. | スターライブ</p>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <button id="fab" class="fab">+</button>
+
+    <!-- Mini Page Menu -->
+    <div id="mini-page" class="mini-page">
+        <div class="mini-page-header">
+            <h3>Navigation Bar</h3>
+            <button id="close-menu" class="close-btn">&times;</button>
+        </div>
+        <div class="mini-page-content">
+            <a href="#home" class="menu-item">
+                <span class="icon">ℹ️</span>
+                <span>Home</span>
+            </a>
+            <a href="#seasons" class="menu-item">
+                <span class="icon">👤</span>
+                <span>Creator</span>
+            </a>
+            <a href="#gallery" class="menu-item">
+                <span class="icon">🗂️</span>
+                <span>Works</span>
+            </a>
+            <a href="#about" class="menu-item">
+                <span class="icon">🛍️</span>
+                <span>Store</span>
+            </a>
+            <a href="#contact" class="menu-item">
+                <span class="icon">📞</span>
+                <span>Social</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Link JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
