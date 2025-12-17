@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - StarLive</title>
+    <title>Japanese Nature - Seasonal Beauty</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,19 +14,22 @@
     <header>
         <div class="header-content">
             <div class="logo-section">
-                <h1>StarLive</h1>
+                <h1>🏯 <span data-translate="siteTitle">Japanese Nature</span></h1>
             </div>
             
             <div class="header-season-selector">
                 <button onclick="changeSeason('spring')" class="season-icon-btn active" data-season="spring" title="Spring">🌸</button>
-                <button onclick="changeSeason('summer')" class="season-icon-btn" data-season="summer" title="Summer">🍀</button>
+                <button onclick="changeSeason('summer')" class="season-icon-btn" data-season="summer" title="Summer">☘️</button>
                 <button onclick="changeSeason('autumn')" class="season-icon-btn" data-season="autumn" title="Autumn">🍁</button>
                 <button onclick="changeSeason('winter')" class="season-icon-btn" data-season="winter" title="Winter">❄️</button>
             </div>
             
-            <div class="header-clock">
-                <div id="header-date" class="header-date"></div>
-                <div id="header-time" class="header-time"></div>
+            <div class="header-right">
+                <div class="header-clock">
+                    <div id="header-date" class="header-date"></div>
+                    <div id="header-time" class="header-time"></div>
+                </div>
+                <button id="settings-btn" class="settings-btn" title="Settings">⚙️</button>
             </div>
         </div>
     </header>
@@ -35,29 +38,106 @@
     <div id="settings-popup" class="settings-popup">
         <div class="settings-content">
             <div class="settings-header">
-                <h2>⚙️ <span data-translate="settingsTitle">Setting</span></h2>
+                <h2>⚙️ <span data-translate="settingsTitle">Pengaturan</span></h2>
                 <button id="close-settings" class="close-settings-btn">&times;</button>
             </div>
-    
+            
+            <div class="settings-body">
+                <!-- Season Selection -->
+                <div class="setting-group">
+                    <h3 data-translate="seasonSelection">Pilih Musim</h3>
+                    <div class="season-options">
+                        <label class="season-option">
+                            <input type="radio" name="season" value="spring" checked>
+                            <span class="season-label">
+                                <span class="season-emoji">🌸</span>
+                                <span data-translate="spring">Spring</span>
+                            </span>
+                        </label>
+                        <label class="season-option">
+                            <input type="radio" name="season" value="summer">
+                            <span class="season-label">
+                                <span class="season-emoji">☘️</span>
+                                <span data-translate="summer">Summer</span>
+                            </span>
+                        </label>
+                        <label class="season-option">
+                            <input type="radio" name="season" value="autumn">
+                            <span class="season-label">
+                                <span class="season-emoji">🍁</span>
+                                <span data-translate="autumn">Autumn</span>
+                            </span>
+                        </label>
+                        <label class="season-option">
+                            <input type="radio" name="season" value="winter">
+                            <span class="season-label">
+                                <span class="season-emoji">❄️</span>
+                                <span data-translate="winter">Winter</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Animation Toggle -->
+                <div class="setting-group">
+                    <h3 data-translate="animationToggle">Animasi Partikel</h3>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="animation-toggle" checked>
+                        <span class="toggle-slider"></span>
+                        <span class="toggle-label" data-translate="animationStatus">Aktif</span>
+                    </label>
+                </div>
+
+                <!-- Language Selection -->
+                <div class="setting-group">
+                    <h3 data-translate="languageSelection">Pilih Bahasa</h3>
+                    <div class="language-options">
+                        <label class="language-option">
+                            <input type="radio" name="language" value="id" checked>
+                            <span class="language-label">
+                                <span class="flag">🇮🇩</span>
+                                <span>Indonesia</span>
+                            </span>
+                        </label>
+                        <label class="language-option">
+                            <input type="radio" name="language" value="en">
+                            <span class="language-label">
+                                <span class="flag">🇬🇧</span>
+                                <span>English</span>
+                            </span>
+                        </label>
+                        <label class="language-option">
+                            <input type="radio" name="language" value="jp">
+                            <span class="language-label">
+                                <span class="flag">🇯🇵</span>
+                                <span>日本語</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <main>
         <div class="content-wrapper">
             <!-- Welcome Section -->
             <div class="welcome-section">
-                <h2>Selamat Datang di Japanese Nature</h2>
-                <p class="subtitle">四季の美しさ - Keindahan Empat Musim</p>
+                <h2 data-translate="welcomeTitle">Selamat Datang di Japanese Nature</h2>
+                <p class="subtitle" data-translate="welcomeSubtitle">四季の美しさ - Keindahan Empat Musim</p>
                 
                 <div class="nature-divider"></div>
                 
-                <p>
+                <p data-translate="welcomePara1">
                     Jepang dikenal dengan keindahan alamnya yang berganti mengikuti empat musim. Setiap musim membawa keunikan dan pesona tersendiri, dari sakura yang mekar di musim semi hingga salju yang turun lembut di musim dingin.
                 </p>
                 
-                <p>
+                <p data-translate="welcomePara2">
                     Website ini menghadirkan pengalaman visual yang memukau, dimana Anda dapat merasakan atmosfer setiap musim di Jepang. Nikmati ketenangan dan keharmonisan alam Jepang yang legendaris melalui tampilan interaktif kami.
                 </p>
                 
-                <p>
+                <p data-translate="welcomePara3">
                     Pilih musim favorit Anda di bagian atas dan rasakan bagaimana alam berubah dengan indahnya. Setiap musim memiliki karakteristik unik yang mencerminkan filosofi Jepang tentang keseimbangan dan keindahan alami.
                 </p>
             </div>
@@ -70,15 +150,15 @@
                 
                 <div class="season-details">
                     <div class="season-detail-item">
-                        <h4>🗓️ Period</h4>
-                        <p id="season-period-text">March - May</p>
+                        <h4><span data-translate="periodLabel">🗓️ Periode</span></h4>
+                        <p id="season-period-text">Maret - Mei</p>
                     </div>
                     <div class="season-detail-item">
-                        <h4>🌡️ Karakteristik</h4>
+                        <h4><span data-translate="characteristicsLabel">🌡️ Karakteristik</span></h4>
                         <p id="season-characteristics">Udara hangat, bunga bermekaran</p>
                     </div>
                     <div class="season-detail-item">
-                        <h4>🎎 Tradisi</h4>
+                        <h4><span data-translate="traditionsLabel">🎎 Tradisi</span></h4>
                         <p id="season-traditions">Hanami (melihat bunga sakura)</p>
                     </div>
                 </div>
@@ -88,20 +168,20 @@
             <div class="features-grid">
                 <div class="feature-card">
                     <span class="feature-icon">🌸</span>
-                    <h3>Pengalaman Visual</h3>
-                    <p>Nikmati efek visual yang memukau dengan partikel-partikel yang jatuh sesuai musim yang dipilih, menciptakan suasana autentik Jepang.</p>
+                    <h3 data-translate="feature1Title">Pengalaman Visual</h3>
+                    <p data-translate="feature1Desc">Nikmati efek visual yang memukau dengan partikel-partikel yang jatuh sesuai musim yang dipilih, menciptakan suasana autentik Jepang.</p>
                 </div>
                 
                 <div class="feature-card">
                     <span class="feature-icon">🎨</span>
-                    <h3>Desain Minimalis</h3>
-                    <p>Terinspirasi dari filosofi wabi-sabi Jepang, desain kami mengedepankan kesederhanaan dan keindahan alami.</p>
+                    <h3 data-translate="feature2Title">Desain Minimalis</h3>
+                    <p data-translate="feature2Desc">Terinspirasi dari filosofi wabi-sabi Jepang, desain kami mengedepankan kesederhanaan dan keindahan alami.</p>
                 </div>
                 
                 <div class="feature-card">
                     <span class="feature-icon">⏰</span>
-                    <h3>Real-time Update</h3>
-                    <p>Waktu dan tanggal ditampilkan secara real-time, mengingatkan kita akan perjalanan waktu dan perubahan musim.</p>
+                    <h3 data-translate="feature3Title">Real-time Update</h3>
+                    <p data-translate="feature3Desc">Waktu dan tanggal ditampilkan secara real-time, mengingatkan kita akan perjalanan waktu dan perubahan musim.</p>
                 </div>
             </div>
         </div>
@@ -111,28 +191,28 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>Tentang Kami</h3>
-                <p>Japanese Nature adalah platform yang didedikasikan untuk membawa keindahan empat musim Jepang ke dalam pengalaman digital yang immersive.</p>
+                <h3 data-translate="footerAboutTitle">Tentang Kami</h3>
+                <p data-translate="footerAboutText">Japanese Nature adalah platform yang didedikasikan untuk membawa keindahan empat musim Jepang ke dalam pengalaman digital yang immersive.</p>
             </div>
             
             <div class="footer-section">
-                <h3>Navigasi</h3>
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#gallery">Gallery</a>
-                <a href="#contact">Contact</a>
+                <h3 data-translate="footerNavTitle">Navigasi</h3>
+                <a href="#home" data-translate="navHome">Home</a>
+                <a href="#about" data-translate="navAbout">About</a>
+                <a href="#gallery" data-translate="navGallery">Gallery</a>
+                <a href="#contact" data-translate="navContact">Contact</a>
             </div>
             
             <div class="footer-section">
-                <h3>Kontak</h3>
+                <h3 data-translate="footerContactTitle">Kontak</h3>
                 <a href="mailto:info@japanesenature.com">info@japanesenature.com</a>
-                <a href="#privacy">Privacy Policy</a>
-                <a href="#terms">Terms of Service</a>
+                <a href="#privacy" data-translate="privacyPolicy">Privacy Policy</a>
+                <a href="#terms" data-translate="termsOfService">Terms of Service</a>
             </div>
         </div>
         
         <div class="footer-bottom">
-            <p>&copy; 2025 StarLive. All Rights Reserved. | スターライブ</p>
+            <p>&copy; 2024 Japanese Nature. All rights reserved. | 日本の自然</p>
         </div>
     </footer>
 
@@ -142,29 +222,29 @@
     <!-- Mini Page Menu -->
     <div id="mini-page" class="mini-page">
         <div class="mini-page-header">
-            <h3>Navigation Bar</h3>
+            <h3 data-translate="menuTitle">Menu Navigasi</h3>
             <button id="close-menu" class="close-btn">&times;</button>
         </div>
         <div class="mini-page-content">
             <a href="#home" class="menu-item">
-                <span class="icon">ℹ️</span>
-                <span>Home</span>
+                <span class="icon">🏠</span>
+                <span data-translate="navHome">Home</span>
             </a>
             <a href="#seasons" class="menu-item">
-                <span class="icon">👤</span>
-                <span>Creator</span>
+                <span class="icon">🌸</span>
+                <span data-translate="menuSeasons">Seasons</span>
             </a>
             <a href="#gallery" class="menu-item">
-                <span class="icon">🗂️</span>
-                <span>Works</span>
+                <span class="icon">🖼️</span>
+                <span data-translate="navGallery">Gallery</span>
             </a>
             <a href="#about" class="menu-item">
-                <span class="icon">🛍️</span>
-                <span>Store</span>
+                <span class="icon">ℹ️</span>
+                <span data-translate="navAbout">About</span>
             </a>
-            <a href="#about" class="menu-item">
-                <span class="icon">📞</span>
-                <span>Social</span>
+            <a href="#contact" class="menu-item">
+                <span class="icon">📧</span>
+                <span data-translate="navContact">Contact</span>
             </a>
         </div>
     </div>
