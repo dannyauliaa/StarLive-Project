@@ -8,15 +8,27 @@
 const translations = {
     id: {
         siteTitle: 'Japanese Nature',
-        settingsTitle: 'Pengaturan',
-        seasonSelection: 'Pilih Musim',
+        menuTheme: 'Pengaturan Tema',
+        menuAnimation: 'Kontrol Animasi',
+        menuLanguage: 'Bahasa',
+        menuAbout: 'Tentang',
+        themeCustomization: 'Kustomisasi Tema',
+        themeDescription: 'Pilih tema dan skema warna pilihan Anda untuk pengalaman terbaik.',
         spring: 'Spring',
         summer: 'Summer',
         autumn: 'Autumn',
         winter: 'Winter',
-        animationToggle: 'Animasi Partikel',
+        animationControl: 'Kontrol Animasi',
+        animationDescription: 'Kelola animasi partikel untuk mengoptimalkan performa.',
+        particleAnimation: 'Animasi Partikel',
+        particleDesc: 'Aktifkan atau nonaktifkan efek partikel jatuh',
+        previewLabel: 'Pratinjau',
         animationStatus: 'Aktif',
-        languageSelection: 'Pilih Bahasa',
+        languageSettings: 'Pengaturan Bahasa',
+        languageDescription: 'Pilih bahasa pilihan Anda untuk antarmuka.',
+        aboutTitle: 'Tentang Japanese Nature',
+        aboutDescription: 'Rasakan keindahan empat musim Jepang.',
+        aboutText: 'Pengalaman web yang didedikasikan untuk menampilkan keindahan menakjubkan dari empat musim Jepang melalui visual interaktif dan desain yang imersif.',
         welcomeTitle: 'Selamat Datang di Japanese Nature',
         welcomeSubtitle: '四季の美しさ - Keindahan Empat Musim',
         welcomePara1: 'Jepang dikenal dengan keindahan alamnya yang berganti mengikuti empat musim. Setiap musim membawa keunikan dan pesona tersendiri, dari sakura yang mekar di musim semi hingga salju yang turun lembut di musim dingin.',
@@ -46,15 +58,27 @@ const translations = {
     },
     en: {
         siteTitle: 'Japanese Nature',
-        settingsTitle: 'Settings',
-        seasonSelection: 'Select Season',
+        menuTheme: 'Theme Settings',
+        menuAnimation: 'Animation Control',
+        menuLanguage: 'Language',
+        menuAbout: 'About',
+        themeCustomization: 'Theme Customization',
+        themeDescription: 'Choose your preferred theme and color scheme for the best experience.',
         spring: 'Spring',
         summer: 'Summer',
         autumn: 'Autumn',
         winter: 'Winter',
-        animationToggle: 'Particle Animation',
+        animationControl: 'Animation Control',
+        animationDescription: 'Manage particle animations to optimize performance.',
+        particleAnimation: 'Particle Animation',
+        particleDesc: 'Enable or disable falling particle effects',
+        previewLabel: 'Preview',
         animationStatus: 'Active',
-        languageSelection: 'Select Language',
+        languageSettings: 'Language Settings',
+        languageDescription: 'Select your preferred language for the interface.',
+        aboutTitle: 'About Japanese Nature',
+        aboutDescription: 'Experience the beauty of Japan\'s four seasons.',
+        aboutText: 'A web experience dedicated to showcasing the stunning beauty of Japan\'s four seasons through interactive visuals and immersive design.',
         welcomeTitle: 'Welcome to Japanese Nature',
         welcomeSubtitle: '四季の美しさ - The Beauty of Four Seasons',
         welcomePara1: 'Japan is known for its natural beauty that changes with the four seasons. Each season brings unique charm, from blooming cherry blossoms in spring to gently falling snow in winter.',
@@ -84,15 +108,27 @@ const translations = {
     },
     jp: {
         siteTitle: '日本の自然',
-        settingsTitle: '設定',
-        seasonSelection: '季節を選択',
+        menuTheme: 'テーマ設定',
+        menuAnimation: 'アニメーション制御',
+        menuLanguage: '言語',
+        menuAbout: '概要',
+        themeCustomization: 'テーマのカスタマイズ',
+        themeDescription: '最高の体験のために、お好みのテーマとカラースキームを選択してください。',
         spring: '春',
         summer: '夏',
         autumn: '秋',
         winter: '冬',
-        animationToggle: 'パーティクルアニメーション',
+        animationControl: 'アニメーション制御',
+        animationDescription: 'パフォーマンスを最適化するためにパーティクルアニメーションを管理します。',
+        particleAnimation: 'パーティクルアニメーション',
+        particleDesc: '落下するパーティクルエフェクトを有効または無効にする',
+        previewLabel: 'プレビュー',
         animationStatus: 'アクティブ',
-        languageSelection: '言語を選択',
+        languageSettings: '言語設定',
+        languageDescription: 'インターフェースの優先言語を選択してください。',
+        aboutTitle: 'Japanese Natureについて',
+        aboutDescription: '日本の四季の美しさを体験してください。',
+        aboutText: 'インタラクティブなビジュアルと没入型デザインを通じて、日本の四季の見事な美しさを紹介することに専念するウェブ体験。',
         welcomeTitle: '日本の自然へようこそ',
         welcomeSubtitle: '四季の美しさ',
         welcomePara1: '日本は四季折々の自然の美しさで知られています。春の桜の開花から冬の優しく降る雪まで、各季節は独特の魅力をもたらします。',
@@ -122,20 +158,12 @@ const translations = {
     }
 };
 
-// ===================================
-// SEASON CONFIGURATION
-// ===================================
+// Season Configuration
 const seasons = {
     spring: {
-        title: 'Spring Season',
-        titleJp: '春 (Haru)',
-        description: 'Musim semi membawa kehidupan baru dengan mekarnya bunga sakura yang memukau',
         particle: '🌸',
         particleCount: 30,
         icon: '🌸',
-        period: 'Maret - Mei',
-        characteristics: 'Udara hangat, bunga bermekaran, langit cerah',
-        traditions: 'Hanami (melihat bunga sakura), festival musim semi',
         translations: {
             id: {
                 title: 'Spring Season',
@@ -164,15 +192,9 @@ const seasons = {
         }
     },
     summer: {
-        title: 'Summer Season',
-        titleJp: '夏 (Natsu)',
-        description: 'Musim panas penuh dengan kehijauan segar dan semangat festival matsuri',
         particle: '☘️',
         particleCount: 25,
         icon: '☘️',
-        period: 'Juni - Agustus',
-        characteristics: 'Panas, lembab, hijau subur, langit biru',
-        traditions: 'Matsuri (festival musim panas), kembang api',
         translations: {
             id: {
                 title: 'Summer Season',
@@ -201,15 +223,9 @@ const seasons = {
         }
     },
     autumn: {
-        title: 'Autumn Season',
-        titleJp: '秋 (Aki)',
-        description: 'Musim gugur mempesona dengan dedaunan maple yang berubah menjadi emas',
         particle: '🍁',
         particleCount: 35,
         icon: '🍁',
-        period: 'September - November',
-        characteristics: 'Sejuk, dedaunan berubah warna, udara segar',
-        traditions: 'Momijigari (melihat daun maple), panen',
         translations: {
             id: {
                 title: 'Autumn Season',
@@ -238,15 +254,9 @@ const seasons = {
         }
     },
     winter: {
-        title: 'Winter Season',
-        titleJp: '冬 (Fuyu)',
-        description: 'Musim dingin membawa ketenangan dengan salju yang turun lembut',
         particle: '❄️',
         particleCount: 40,
         icon: '❄️',
-        period: 'Desember - Februari',
-        characteristics: 'Dingin, bersalju, pemandangan putih bersih',
-        traditions: 'Onsen (pemandian air panas), perayaan tahun baru',
         translations: {
             id: {
                 title: 'Winter Season',
@@ -276,25 +286,17 @@ const seasons = {
     }
 };
 
-// Global Variables
 let currentSeason = 'spring';
 let currentLanguage = 'id';
 let particleInterval;
 let animationEnabled = true;
 
-// ===================================
-// INITIALIZATION
-// ===================================
 document.addEventListener('DOMContentLoaded', function() {
     initializeClock();
     changeSeason('spring');
     initializeFAB();
     initializeSettings();
 });
-
-// ===================================
-// REAL-TIME CLOCK FUNCTIONS
-// ===================================
 
 function initializeClock() {
     updateDateTime();
@@ -303,7 +305,6 @@ function initializeClock() {
 
 function updateDateTime() {
     const now = new Date();
-    
     let days, months;
     
     if (currentLanguage === 'id') {
@@ -331,10 +332,6 @@ function updateDateTime() {
     }
     document.getElementById('header-time').textContent = `${hours}:${minutes}`;
 }
-
-// ===================================
-// SEASON CHANGE FUNCTIONS
-// ===================================
 
 function changeSeason(season) {
     if (!seasons[season]) return;
@@ -366,10 +363,6 @@ function changeSeason(season) {
         createParticles(season);
     }
 }
-
-// ===================================
-// PARTICLE SYSTEM FUNCTIONS
-// ===================================
 
 function createParticles(season) {
     const container = document.getElementById('particles');
@@ -421,15 +414,12 @@ function stopParticles() {
     }
 }
 
-// ===================================
-// SETTINGS FUNCTIONS
-// ===================================
-
 function initializeSettings() {
     const settingsBtn = document.getElementById('settings-btn');
     const settingsPopup = document.getElementById('settings-popup');
     const closeSettings = document.getElementById('close-settings');
     const animationToggle = document.getElementById('animation-toggle');
+    const menuItems = document.querySelectorAll('.settings-menu .menu-item');
     
     settingsBtn.addEventListener('click', () => {
         settingsPopup.classList.add('active');
@@ -445,6 +435,18 @@ function initializeSettings() {
         }
     });
     
+    menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const section = item.dataset.section;
+            
+            menuItems.forEach(m => m.classList.remove('active'));
+            item.classList.add('active');
+            
+            document.querySelectorAll('.settings-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(`section-${section}`).classList.add('active');
+        });
+    });
+    
     document.querySelectorAll('input[name="season"]').forEach(radio => {
         radio.addEventListener('change', (e) => {
             changeSeason(e.target.value);
@@ -453,12 +455,18 @@ function initializeSettings() {
     
     animationToggle.addEventListener('change', (e) => {
         animationEnabled = e.target.checked;
+        const statusBadge = document.getElementById('animation-status');
+        
         if (animationEnabled) {
             createParticles(currentSeason);
+            statusBadge.textContent = translations[currentLanguage].animationStatus;
+            statusBadge.className = 'status-badge active';
         } else {
             stopParticles();
+            statusBadge.textContent = currentLanguage === 'id' ? 'Nonaktif' : 
+                                      currentLanguage === 'en' ? 'Inactive' : '非アクティブ';
+            statusBadge.className = 'status-badge inactive';
         }
-        updateToggleLabel();
     });
     
     document.querySelectorAll('input[name="language"]').forEach(radio => {
@@ -467,20 +475,6 @@ function initializeSettings() {
         });
     });
 }
-
-function updateToggleLabel() {
-    const label = document.querySelector('.toggle-label');
-    if (animationEnabled) {
-        label.textContent = translations[currentLanguage].animationStatus;
-    } else {
-        label.textContent = currentLanguage === 'id' ? 'Nonaktif' : 
-                           currentLanguage === 'en' ? 'Inactive' : '非アクティブ';
-    }
-}
-
-// ===================================
-// LANGUAGE FUNCTIONS
-// ===================================
 
 function changeLanguage(lang) {
     currentLanguage = lang;
@@ -494,15 +488,20 @@ function changeLanguage(lang) {
     
     changeSeason(currentSeason);
     updateDateTime();
-    updateToggleLabel();
+    
+    const statusBadge = document.getElementById('animation-status');
+    if (animationEnabled) {
+        statusBadge.textContent = translations[lang].animationStatus;
+        statusBadge.className = 'status-badge active';
+    } else {
+        statusBadge.textContent = lang === 'id' ? 'Nonaktif' : 
+                                  lang === 'en' ? 'Inactive' : '非アクティブ';
+        statusBadge.className = 'status-badge inactive';
+    }
     
     const langRadio = document.querySelector(`input[name="language"][value="${lang}"]`);
     if (langRadio) langRadio.checked = true;
 }
-
-// ===================================
-// FLOATING ACTION BUTTON (FAB) FUNCTIONS
-// ===================================
 
 function initializeFAB() {
     const fab = document.getElementById('fab');
@@ -519,7 +518,7 @@ function initializeFAB() {
         fab.style.transform = 'rotate(0deg)';
     });
     
-    document.querySelectorAll('.menu-item').forEach(item => {
+    document.querySelectorAll('.mini-page .menu-item').forEach(item => {
         item.addEventListener('click', () => {
             miniPage.classList.remove('active');
             fab.style.transform = 'rotate(0deg)';
