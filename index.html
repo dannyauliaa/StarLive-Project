@@ -3,822 +3,340 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StarLive - Official Site</title>
-    <link href="https://cdnjs.cloudf
-        
-        lare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --primary-pink: #ff6b9d;
-            --secondary-pink: #ffeef4;
-            --accent-blue: #4dabf7;
-            --accent-purple: #9775fa;
-            --accent-peach:#ffb6b9;
-            --accent-mintgreen:#98ff98;
-            --accent-turquoise:#40e0d0;
-            --text-dark: #2d3436;
-            --text-light: #636e72;
-            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            --card-border: rgba(255, 255, 255, 0.2);
-            --neon-glow: 0 0 20px rgba(74, 171, 247, 0.5);
-        }
-        
-        body {
-            font-family: 'Inter', 'Noto Sans JP', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            overflow-x: hidden;
-            background: linear-gradient(135deg, #f5f7fa 10%, #c3cfe2 90%);
-        }
-        
-        /* Animated Background */
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-        .grid-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(74, 171, 247, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(74, 171, 247, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: gridMove 20s linear infinite;
-        }
-        .floating-shapes {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .shape {
-            position: absolute;
-            background: var(--accent-blue);
-            border-radius: 50%;
-            opacity: 0.2;
-            animation: float 15s infinite linear;
-            
-        }
-        
-        .shape:nth-child(1) {
-            width: 80px;
-            height: 80px;
-            background: var(--primary-pink);
-            top: 10%;
-            left: 10%;
-            animation-delay: 10s;
-        }
-        
-        .shape:nth-child(2) {
-            width: 120px;
-            height: 120px;
-            background: var(--accent-blue);
-            top: 20%;
-            right: 10%;
-            animation-delay: 10s;
-        }
-        
-        .shape:nth-child(3) {
-            width: 100px;
-            height: 100px;
-            background: var(--accent-purple);
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 10s;
-        }
-
-        .shape:nth-child(4) {
-            width: 100px;
-            height: 100px;
-            background: var(--accent-peach);
-            bottom: 20%;
-            right: 20%;
-            animation-delay: 10s;
-        }
-
-        .shape:nth-child(5) {
-            width: 100px;
-            height: 100px;
-            background: var(--accent-mintgreen);
-            center: 40%
-            right: 40%;
-            animation-delay: 10s;
-        }
-
-        .shape:nth-child(6) {
-            width: 100px;
-            height: 100px;
-            background: var(--accent-turquoise);
-            center: 20%
-            left: 30%;
-            animation-delay: 10s;
-        }
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        /* Side Brand Name */
-        .side-brand {
-            position: fixed;
-            right: 30px;
-            top: 50%;
-            transform: translateY(-50%) rotate(90deg);
-            transform-origin: center;
-            z-index: 100;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, var(--primary-pink), var(--accent-blue), var(--accent-purple), var(--accent-peach));
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientMove 3s ease-in-out infinite, textGlow 2s ease-in-out infinite alternate;
-            letter-spacing: 3px;
-            user-select: none;
-        }
-        
-        @keyframes gradientMove {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        
-        @keyframes textGlow {
-            from { filter: drop-shadow(0 0 5px rgba(74, 171, 247, 0.5)); }
-            to { filter: drop-shadow(0 0 20px rgba(74, 171, 247, 0.8)); }
-        }
-        
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, var(--primary-pink), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary-pink);
-            transform: translateY(-2px);
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background: var(--primary-pink);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-            position: relative;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            animation: fadeInUp 1s ease;
-        }
-        
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--primary-pink), var(--accent-blue), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradient 3s ease-in-out infinite;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease 0.3s both;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: linear-gradient(45deg, var(--primary-pink), var(--accent-purple));
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: var(--card-shadow);
-            animation: fadeInUp 1s ease 0.6s both;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-        
-        /* Character Section */
-        .character-section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .character-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .character-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: var(--card-shadow);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .character-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-        }
-        
-        .character-avatar {
-            width: 150px;
-            height: 150px;
-            background: linear-gradient(45deg, var(--primary-pink), var(--accent-blue));
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
-            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
-        }
-        
-        .character-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-        }
-        
-        .character-card p {
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        /* Shield Button (Floating Action) */
-        .shield-button {
-            position: fixed;
-            bottom: 40px;
-            left: 40px;
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            border-radius: 50% 50% 50% 0;
-            transform: rotate(-45deg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(74, 171, 247, 0.4);
-            transition: all 0.3s ease;
-            z-index: 1001;
-            border: none;
-        }
-        
-        .shield-button:hover {
-            transform: rotate(-45deg) scale(1.1);
-            box-shadow: 0 15px 40px rgba(74, 171, 247, 0.6);
-        }
-        
-        .shield-button i {
-            transform: rotate(45deg);
-            font-size: 1.8rem;
-            color: var(--text-bright);
-        }
-        
-        /* Modal/Popup */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
-        }
-        
-        .modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        .modal-content {
-            background: var(--card-glass);
-            backdrop-filter: blur(20px);
-            border: 2px solid var(--card-border);
-            border-radius: 25px;
-            width: 90%;
-            max-width: 900px;
-            max-height: 80vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(74, 171, 247, 0.3);
-            animation: slideIn 0.4s ease;
-        }
-        
-        /* Modal Left Side - Character */
-        .modal-character {
-            background: linear-gradient(135deg, var(--accent-purple), var(--primary-blue));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            min-height: 600px;
-        }
-        
-        .modal-character-image {
-            font-size: 12rem;
-            color: var(--text-bright);
-            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
-        }
-        
-        /* Modal Right Side - Menu */
-        .modal-menu {
-            padding: 3rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            background: none;
-            border: none;
-            font-size: 2rem;
-            color: var(--text-glow);
-            cursor: pointer;
-            z-index: 10;
-            transition: all 0.3s ease;
-        }
-        
-        .modal-close:hover {
-            color: var(--primary-blue);
-            transform: rotate(90deg);
-        }
-        
-        .modal-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            background: linear-gradient(45deg, var(--primary-blue), var(--accent-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .menu-list {
-            list-style: none;
-        }
-        
-        .menu-item {
-            margin-bottom: 1.5rem;
-        }
-        
-        .menu-link {
-            display: flex;
-            align-items: center;
-            padding: 1rem 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--card-border);
-            border-radius: 15px;
-            color: var(--text-glow);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .menu-link:hover {
-            background: rgba(74, 171, 247, 0.1);
-            border-color: var(--primary-blue);
-            transform: translateX(10px);
-            box-shadow: 0 5px 15px rgba(74, 171, 247, 0.2);
-        }
-        
-        .menu-link i {
-            margin-right: 1rem;
-            font-size: 1.2rem;
-            color: var(--primary-blue);
-            width: 30px;
-            text-align: center;
-        }
-        
-        
-        /* Social Links */
-        .social-section {
-            padding: 5rem 2rem;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(10px);
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .social-link {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(45deg, var(--primary-pink), var(--accent-purple));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: var(--card-shadow);
-        }
-        
-        .social-link:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-        }
-        
-        /* Footer */
-        footer {
-            padding: 2rem;
-            text-align: center;
-            background: var(--text-dark);
-            color: white;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .character-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .social-links {
-                gap: 1rem;
-            }
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.6; }
-            25% { transform: translateY(-100px) translateX(50px); opacity: 1; }
-            50% { transform: translateY(-50px) translateX(-30px); opacity: 0.8; }
-            75% { transform: translateY(-150px) translateX(20px); opacity: 0.9; }
-        }
-        
-        @keyframes gradient {
-            0%, 100% { filter: hue-rotate(0deg); }
-            50% { filter: hue-rotate(90deg); }
-        }
-        
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+    <title>Japanese Nature - Seasonal Beauty</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-        <!-- Loading Screen -->
-    <div class="loading-screen">
-        <div class="loading-spinner"></div>
-    </div>
+    <!-- Particle Container -->
+    <div id="particles"></div>
 
-    <div class="animated-bg">
-        <div class="floating-shapes">
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <div class="shape"></div>
-        </div>
-    </div>
-
-        <!-- Side Brand Name -->
-    <div class="side-brand">StarLive</div>
-    
+    <!-- Header -->
     <header>
-        <nav>
-            <div class="logo">StarLive</div>
-            <ul class="nav-links">
-                <li class="nav-item"><a class="nav-link" href="/home/" class="active" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="creator2.html">Creators</a></li>
-                <li class="nav-item"><a class="nav-link" href="creator3.html">Creator3</a></li>
-                <li class="nav-item"><a class="nav-link" href="profile-noahvn.html">Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="works.html">Works</a></li>
-                <li class="nav-item"><a class="nav-link" href="achievement.html">Project</a></li>
-                <li class="nav-item"><a class="nav-link" href="indexv2.html">Social</a></li>
-                <li class="nav-item"><a class="nav-link" href="social.html">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="header-content">
+            <div class="logo-section">
+                <h1>🏯 <span data-translate="siteTitle">Japanese Nature</span></h1>
+            </div>
+            
+            <div class="header-season-selector">
+                <button onclick="changeSeason('spring')" class="season-icon-btn active" data-season="spring" title="Spring">🌸</button>
+                <button onclick="changeSeason('summer')" class="season-icon-btn" data-season="summer" title="Summer">☘️</button>
+                <button onclick="changeSeason('autumn')" class="season-icon-btn" data-season="autumn" title="Autumn">🍁</button>
+                <button onclick="changeSeason('winter')" class="season-icon-btn" data-season="winter" title="Winter">❄️</button>
+            </div>
+            
+            <div class="header-right">
+                <div class="header-clock">
+                    <div id="header-date" class="header-date"></div>
+                    <div id="header-time" class="header-time"></div>
+                </div>
+                <button id="settings-btn" class="settings-btn" title="Settings">⚙️</button>
+            </div>
+        </div>
     </header>
 
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>StarLive</h1>
-            <p>Welcome to the official website of StarLive</p>
-            <a href="#characters" class="cta-button">Explore Us!</a>
-        </div>
-    </section>
-
-    <section class="character-section" id="characters">
-        <div class="fade-in">
-            <h2 style="text-align: center; font-size: 3rem; margin-bottom: 1rem; color: var(--text-dark);">Our Creators</h2>
-            <p style="text-align: center; color: var(--text-light); font-size: 1.1rem;">Meet our excellent creators</p>
-        </div>
-        
-        <div class="character-grid">
-            <div class="character-card fade-in">
-                <div class="character-avatar">
-                    <i class="fas fa-cat"></i>
-                </div>
-                <h3>Saint Aulia</h3>
-                <p>A good leader who puts forward the most ideas. Always ready for the next exciting journey!</p>
-            </div>
+    <!-- Settings Popup -->
+    <div id="settings-popup" class="settings-popup">
+        <div class="settings-container">
+            <!-- Close Button -->
+            <button id="close-settings" class="close-settings-btn">&times;</button>
             
-            <div class="character-card fade-in">
-                <div class="character-avatar">
-                    <i class="fas fa-heart"></i>
-                </div>
-                <h3>Noah von Nobelius</h3>
-                <p>A cool member who is quick in executing plans. Ready to welcome any developments!</p>
-            </div>
+            <!-- Settings Title -->
+            <h1 class="settings-main-title">Settings & Preferences</h1>
             
-            <div class="character-card fade-in">
-                <div class="character-avatar">
-                    <i class="fas fa-star"></i>
+            <div class="settings-layout">
+                <!-- Sidebar Menu -->
+                <div class="settings-sidebar">
+                    <div class="settings-user-info">
+                        <div class="user-avatar">👤</div>
+                        <div class="user-details">
+                            <div class="user-name">User Name</div>
+                            <div class="user-email">user@example.com</div>
+                        </div>
+                    </div>
+                    
+                    <nav class="settings-menu">
+                        <button class="menu-item active" data-section="theme">
+                            <span class="menu-icon">🎨</span>
+                            <span data-translate="menuTheme">Theme Settings</span>
+                        </button>
+                        <button class="menu-item" data-section="animation">
+                            <span class="menu-icon">✨</span>
+                            <span data-translate="menuAnimation">Animation Control</span>
+                        </button>
+                        <button class="menu-item" data-section="language">
+                            <span class="menu-icon">🌐</span>
+                            <span data-translate="menuLanguage">Language</span>
+                        </button>
+                        <button class="menu-item" data-section="about">
+                            <span class="menu-icon">ℹ️</span>
+                            <span data-translate="menuAbout">About</span>
+                        </button>
+                    </nav>
                 </div>
-                <h3>Stella Luminara</h3>
-                <p>A cheerful and fun member who always fulfill our needs. Always there when you need them most.</p>
-            </div>
-        </div>
-    </section>
-
-     <!-- Shield Button -->
-    <button class="shield-button" onclick="openModal()" title="Open Menu">
-        <i class="fas fa-shield-alt"></i>
-    </button>
-
-    <!-- Modal -->
-    <div id="mainModal" class="modal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            
-            <!-- Left Side - Character -->
-            <div class="modal-character">
-                <div class="modal-character-image">
-                    <i class="fas fa-user-astronaut"></i>
-                </div>
-            </div>
-            
-            <!-- Right Side - Menu -->
-            <div class="modal-menu">
-                <h2 class="modal-title">NAVIGATION</h2>
                 
-                <ul class="menu-list">
-                    <li class="menu-item">
-                        <a class="menu-link" onclick="showSection('creator')">
-                            <i class="fas fa-user-tie"></i>
-                            Creator
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a class="menu-link" onclick="showSection('works')">
-                            <i class="fas fa-briefcase"></i>
-                            Works
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a class="menu-link" onclick="showSection('achievement')">
-                            <i class="fas fa-trophy"></i>
-                            Achievement
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a class="menu-link" onclick="showSection('social')">
-                            <i class="fas fa-share-alt"></i>
-                            Social & Contact
-                        </a>
-                    </li>
-                </ul>
-    
-    <section class="social-section" id="social">
-        <div class="fade-in">
-            <h2 style="font-size: 3rem; margin-bottom: 1rem; color: var(--text-dark);">Follow Us</h2>
-            <p style="color: var(--text-light); font-size: 1.1rem;">Stay connected on social media</p>
+                <!-- Content Area -->
+                <div class="settings-content-area">
+                    <!-- Theme Settings Section -->
+                    <div class="settings-section active" id="section-theme">
+                        <h2 class="section-title" data-translate="themeCustomization">Theme Customization</h2>
+                        <p class="section-description" data-translate="themeDescription">Choose your preferred theme and color scheme for the best experience.</p>
+                        
+                        <div class="theme-options">
+                            <label class="theme-card">
+                                <input type="radio" name="season" value="spring" checked>
+                                <div class="theme-card-content spring-theme">
+                                    <span class="theme-icon">🌸</span>
+                                    <span class="theme-name" data-translate="spring">Spring</span>
+                                </div>
+                            </label>
+                            
+                            <label class="theme-card">
+                                <input type="radio" name="season" value="summer">
+                                <div class="theme-card-content summer-theme">
+                                    <span class="theme-icon">☘️</span>
+                                    <span class="theme-name" data-translate="summer">Summer</span>
+                                </div>
+                            </label>
+                            
+                            <label class="theme-card">
+                                <input type="radio" name="season" value="autumn">
+                                <div class="theme-card-content autumn-theme">
+                                    <span class="theme-icon">🍁</span>
+                                    <span class="theme-name" data-translate="autumn">Autumn</span>
+                                </div>
+                            </label>
+                            
+                            <label class="theme-card">
+                                <input type="radio" name="season" value="winter">
+                                <div class="theme-card-content winter-theme">
+                                    <span class="theme-icon">❄️</span>
+                                    <span class="theme-name" data-translate="winter">Winter</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Animation Control Section -->
+                    <div class="settings-section" id="section-animation">
+                        <h2 class="section-title" data-translate="animationControl">Animation Control</h2>
+                        <p class="section-description" data-translate="animationDescription">Manage particle animations to optimize performance.</p>
+                        
+                        <div class="control-group">
+                            <div class="control-info">
+                                <h3 data-translate="particleAnimation">Particle Animation</h3>
+                                <p data-translate="particleDesc">Enable or disable falling particle effects</p>
+                            </div>
+                            <label class="modern-toggle">
+                                <input type="checkbox" id="animation-toggle" checked>
+                                <span class="toggle-slider-modern"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="animation-preview">
+                            <div class="preview-label" data-translate="previewLabel">Preview:</div>
+                            <div id="animation-status" class="status-badge active" data-translate="animationStatus">Active</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Language Section -->
+                    <div class="settings-section" id="section-language">
+                        <h2 class="section-title" data-translate="languageSettings">Language Settings</h2>
+                        <p class="section-description" data-translate="languageDescription">Select your preferred language for the interface.</p>
+                        
+                        <div class="language-grid">
+                            <label class="language-card">
+                                <input type="radio" name="language" value="id" checked>
+                                <div class="language-card-content">
+                                    <span class="language-flag">🇮🇩</span>
+                                    <div class="language-info">
+                                        <span class="language-primary">Indonesia</span>
+                                        <span class="language-secondary">Bahasa Indonesia</span>
+                                    </div>
+                                    <span class="check-icon">✓</span>
+                                </div>
+                            </label>
+                            
+                            <label class="language-card">
+                                <input type="radio" name="language" value="en">
+                                <div class="language-card-content">
+                                    <span class="language-flag">🇬🇧</span>
+                                    <div class="language-info">
+                                        <span class="language-primary">English</span>
+                                        <span class="language-secondary">English (UK)</span>
+                                    </div>
+                                    <span class="check-icon">✓</span>
+                                </div>
+                            </label>
+                            
+                            <label class="language-card">
+                                <input type="radio" name="language" value="jp">
+                                <div class="language-card-content">
+                                    <span class="language-flag">🇯🇵</span>
+                                    <div class="language-info">
+                                        <span class="language-primary">日本語</span>
+                                        <span class="language-secondary">Japanese</span>
+                                    </div>
+                                    <span class="check-icon">✓</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- About Section -->
+                    <div class="settings-section" id="section-about">
+                        <h2 class="section-title" data-translate="aboutTitle">About Japanese Nature</h2>
+                        <p class="section-description" data-translate="aboutDescription">Experience the beauty of Japan's four seasons.</p>
+                        
+                        <div class="about-content">
+                            <div class="about-logo">🏯</div>
+                            <h3>Japanese Nature</h3>
+                            <p class="version">Version 1.0.0</p>
+                            <p class="about-text" data-translate="aboutText">
+                                A web experience dedicated to showcasing the stunning beauty of Japan's four seasons through interactive visuals and immersive design.
+                            </p>
+                            <div class="about-links">
+                                <a href="#" class="about-link">📧 Contact</a>
+                                <a href="#" class="about-link">🌐 Website</a>
+                                <a href="#" class="about-link">💝 Support</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <div class="content-wrapper">
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <h2 data-translate="welcomeTitle">Selamat Datang di Japanese Nature</h2>
+                <p class="subtitle" data-translate="welcomeSubtitle">四季の美しさ - Keindahan Empat Musim</p>
+                
+                <div class="nature-divider"></div>
+                
+                <p data-translate="welcomePara1">
+                    Jepang dikenal dengan keindahan alamnya yang berganti mengikuti empat musim. Setiap musim membawa keunikan dan pesona tersendiri, dari sakura yang mekar di musim semi hingga salju yang turun lembut di musim dingin.
+                </p>
+                
+                <p data-translate="welcomePara2">
+                    Website ini menghadirkan pengalaman visual yang memukau, dimana Anda dapat merasakan atmosfer setiap musim di Jepang. Nikmati ketenangan dan keharmonisan alam Jepang yang legendaris melalui tampilan interaktif kami.
+                </p>
+                
+                <p data-translate="welcomePara3">
+                    Pilih musim favorit Anda di bagian atas dan rasakan bagaimana alam berubah dengan indahnya. Setiap musim memiliki karakteristik unik yang mencerminkan filosofi Jepang tentang keseimbangan dan keindahan alami.
+                </p>
+            </div>
+
+            <!-- Season Info Card -->
+            <div class="season-info-card">
+                <span id="season-icon" class="season-icon-large">🌸</span>
+                <h2 id="season-title">Spring Season</h2>
+                <p id="season-description">Cherry blossoms bloom across the landscape</p>
+                
+                <div class="season-details">
+                    <div class="season-detail-item">
+                        <h4><span data-translate="periodLabel">🗓️ Periode</span></h4>
+                        <p id="season-period-text">Maret - Mei</p>
+                    </div>
+                    <div class="season-detail-item">
+                        <h4><span data-translate="characteristicsLabel">🌡️ Karakteristik</span></h4>
+                        <p id="season-characteristics">Udara hangat, bunga bermekaran</p>
+                    </div>
+                    <div class="season-detail-item">
+                        <h4><span data-translate="traditionsLabel">🎎 Tradisi</span></h4>
+                        <p id="season-traditions">Hanami (melihat bunga sakura)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🌸</span>
+                    <h3 data-translate="feature1Title">Pengalaman Visual</h3>
+                    <p data-translate="feature1Desc">Nikmati efek visual yang memukau dengan partikel-partikel yang jatuh sesuai musim yang dipilih, menciptakan suasana autentik Jepang.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🎨</span>
+                    <h3 data-translate="feature2Title">Desain Minimalis</h3>
+                    <p data-translate="feature2Desc">Terinspirasi dari filosofi wabi-sabi Jepang, desain kami mengedepankan kesederhanaan dan keindahan alami.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">⏰</span>
+                    <h3 data-translate="feature3Title">Real-time Update</h3>
+                    <p data-translate="feature3Desc">Waktu dan tanggal ditampilkan secara real-time, mengingatkan kita akan perjalanan waktu dan perubahan musim.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 data-translate="footerAboutTitle">Tentang Kami</h3>
+                <p data-translate="footerAboutText">Japanese Nature adalah platform yang didedikasikan untuk membawa keindahan empat musim Jepang ke dalam pengalaman digital yang immersive.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3 data-translate="footerNavTitle">Navigasi</h3>
+                <a href="#home" data-translate="navHome">Home</a>
+                <a href="#about" data-translate="navAbout">About</a>
+                <a href="#gallery" data-translate="navGallery">Gallery</a>
+                <a href="#contact" data-translate="navContact">Contact</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3 data-translate="footerContactTitle">Kontak</h3>
+                <a href="mailto:info@japanesenature.com">info@japanesenature.com</a>
+                <a href="#privacy" data-translate="privacyPolicy">Privacy Policy</a>
+                <a href="#terms" data-translate="termsOfService">Terms of Service</a>
+            </div>
         </div>
         
-        <div class="social-links">
-            <a href="#" class="social-link" title="Twitter">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="social-link" title="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="#" class="social-link" title="YouTube">
-                <i class="fab fa-youtube"></i>
-            </a>
-            <a href="#" class="social-link" title="Discord">
-                <i class="fab fa-discord"></i>
-            </a>
-            <a href="#" class="social-link" title="pixiv">
-                <i class="fab fa-pixiv"></i>
-            </a>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Japanese Nature. All rights reserved. | 日本の自然</p>
         </div>
-    </section>
-
-    <footer id="contact">
-        <p>&copy; StarLive 2025. All Rights Reserved.</p>
     </footer>
 
-    <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+    <!-- Floating Action Button -->
+    <button id="fab" class="fab">+</button>
 
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+    <!-- Mini Page Menu -->
+    <div id="mini-page" class="mini-page">
+        <div class="mini-page-header">
+            <h3 data-translate="menuTitle">Menu Navigasi</h3>
+            <button id="close-menu" class="close-btn">&times;</button>
+        </div>
+        <div class="mini-page-content">
+            <a href="#home" class="menu-item">
+                <span class="icon">🏠</span>
+                <span data-translate="navHome">Home</span>
+            </a>
+            <a href="#seasons" class="menu-item">
+                <span class="icon">🌸</span>
+                <span data-translate="menuSeasons">Seasons</span>
+            </a>
+            <a href="#gallery" class="menu-item">
+                <span class="icon">🖼️</span>
+                <span data-translate="navGallery">Gallery</span>
+            </a>
+            <a href="#about" class="menu-item">
+                <span class="icon">ℹ️</span>
+                <span data-translate="navAbout">About</span>
+            </a>
+            <a href="#contact" class="menu-item">
+                <span class="icon">📧</span>
+                <span data-translate="navContact">Contact</span>
+            </a>
+        </div>
+    </div>
 
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = 'none';
-            }
-        });
-
-        // Character card hover effects
-        document.querySelectorAll('.character-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.background = 'rgba(255, 255, 255, 0.95)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.background = 'rgba(255, 255, 255, 0.9)';
-            });
-        });
-
-        // Add sparkle effect on character avatars
-        document.querySelectorAll('.character-avatar').forEach(avatar => {
-            avatar.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.1) rotate(5deg)';
-                this.style.transition = 'all 0.3s ease';
-            });
-            
-            avatar.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1) rotate(0deg)';
-            });
-        });
-    </script>
+    <!-- Link JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
