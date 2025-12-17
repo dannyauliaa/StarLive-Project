@@ -1,3 +1,10 @@
+// ===================================
+// JAPANESE NATURE WEBSITE - JAVASCRIPT
+// ===================================
+
+// ===================================
+// TRANSLATIONS
+// ===================================
 const translations = {
     id: {
         siteTitle: 'Japanese Nature',
@@ -93,7 +100,7 @@ const translations = {
         welcomePara3: '上部でお気に入りの季節を選択して、自然がどのように美しく変化するかを感じてください。各季節には、バランスと自然の美しさという日本の哲学を反映するユニークな特徴があります。',
         periodLabel: '🗓️ 期間',
         characteristicsLabel: '🌡️ 特徴',
-        traditionsLabel: '🎎  伝統',
+        traditionsLabel: '🎎 伝統',
         feature1Title: 'ビジュアル体験',
         feature1Desc: '選択した季節に応じて落下するパーティクルで素晴らしいビジュアル効果をお楽しみください。本格的な日本の雰囲気を作り出します。',
         feature2Title: 'ミニマリストデザイン',
@@ -120,95 +127,151 @@ const translations = {
 // ===================================
 const seasons = {
     spring: {
-        title: { id: 'Spring Season', en: 'Spring Season', jp: '春の季節' },
-        titleJp: { id: '春 (Haru)', en: '春 (Haru)', jp: '春 (ハル)' },
-        description: {
-            id: 'Musim semi membawa kehidupan baru dengan mekarnya bunga sakura yang memukau',
-            en: 'Spring brings new life with the blooming of stunning cherry blossoms',
-            jp: '春は見事な桜の開花で新しい生命をもたらします'
-        },
+        title: 'Spring Season',
+        titleJp: '春 (Haru)',
+        description: 'Musim semi membawa kehidupan baru dengan mekarnya bunga sakura yang memukau',
         particle: '🌸',
         particleCount: 30,
         icon: '🌸',
-        period: { id: 'Maret - Mei', en: 'March - May', jp: '3月 - 5月' },
-        characteristics: {
-            id: 'Udara hangat, bunga bermekaran, langit cerah',
-            en: 'Warm air, blooming flowers, clear skies',
-            jp: '暖かい空気、咲く花、晴れた空'
-        },
-        traditions: {
-            id: 'Hanami (melihat bunga sakura), festival musim semi',
-            en: 'Hanami (cherry blossom viewing), spring festivals',
-            jp: '花見、春祭り'
+        period: 'Maret - Mei',
+        characteristics: 'Udara hangat, bunga bermekaran, langit cerah',
+        traditions: 'Hanami (melihat bunga sakura), festival musim semi',
+        translations: {
+            id: {
+                title: 'Spring Season',
+                titleJp: '春 (Haru)',
+                description: 'Musim semi membawa kehidupan baru dengan mekarnya bunga sakura yang memukau',
+                period: 'Maret - Mei',
+                characteristics: 'Udara hangat, bunga bermekaran, langit cerah',
+                traditions: 'Hanami (melihat bunga sakura), festival musim semi'
+            },
+            en: {
+                title: 'Spring Season',
+                titleJp: '春 (Haru)',
+                description: 'Spring brings new life with the blooming of stunning cherry blossoms',
+                period: 'March - May',
+                characteristics: 'Warm air, blooming flowers, clear skies',
+                traditions: 'Hanami (cherry blossom viewing), spring festivals'
+            },
+            jp: {
+                title: '春の季節',
+                titleJp: '春 (ハル)',
+                description: '春は見事な桜の開花で新しい生命をもたらします',
+                period: '3月 - 5月',
+                characteristics: '暖かい空気、咲く花、晴れた空',
+                traditions: '花見、春祭り'
+            }
         }
     },
     summer: {
-        title: { id: 'Summer Season', en: 'Summer Season', jp: '夏の季節' },
-        titleJp: { id: '夏 (Natsu)', en: '夏 (Natsu)', jp: '夏 (ナツ)' },
-        description: {
-            id: 'Musim panas penuh dengan kehijauan segar dan semangat festival matsuri',
-            en: 'Summer is full of fresh greenery and the spirit of matsuri festivals',
-            jp: '夏は新鮮な緑と祭りの精神に満ちています'
-        },
+        title: 'Summer Season',
+        titleJp: '夏 (Natsu)',
+        description: 'Musim panas penuh dengan kehijauan segar dan semangat festival matsuri',
         particle: '☘️',
         particleCount: 25,
         icon: '☘️',
-        period: { id: 'Juni - Agustus', en: 'June - August', jp: '6月 - 8月' },
-        characteristics: {
-            id: 'Panas, lembab, hijau subur, langit biru',
-            en: 'Hot, humid, lush green, blue skies',
-            jp: '暑い、湿気、豊かな緑、青い空'
-        },
-        traditions: {
-            id: 'Matsuri (festival musim panas), kembang api',
-            en: 'Matsuri (summer festivals), fireworks',
-            jp: '祭り、花火'
+        period: 'Juni - Agustus',
+        characteristics: 'Panas, lembab, hijau subur, langit biru',
+        traditions: 'Matsuri (festival musim panas), kembang api',
+        translations: {
+            id: {
+                title: 'Summer Season',
+                titleJp: '夏 (Natsu)',
+                description: 'Musim panas penuh dengan kehijauan segar dan semangat festival matsuri',
+                period: 'Juni - Agustus',
+                characteristics: 'Panas, lembab, hijau subur, langit biru',
+                traditions: 'Matsuri (festival musim panas), kembang api'
+            },
+            en: {
+                title: 'Summer Season',
+                titleJp: '夏 (Natsu)',
+                description: 'Summer is full of fresh greenery and the spirit of matsuri festivals',
+                period: 'June - August',
+                characteristics: 'Hot, humid, lush green, blue skies',
+                traditions: 'Matsuri (summer festivals), fireworks'
+            },
+            jp: {
+                title: '夏の季節',
+                titleJp: '夏 (ナツ)',
+                description: '夏は新鮮な緑と祭りの精神に満ちています',
+                period: '6月 - 8月',
+                characteristics: '暑い、湿気、豊かな緑、青い空',
+                traditions: '祭り、花火'
+            }
         }
     },
     autumn: {
-        title: { id: 'Autumn Season', en: 'Autumn Season', jp: '秋の季節' },
-        titleJp: { id: '秋 (Aki)', en: '秋 (Aki)', jp: '秋 (アキ)' },
-        description: {
-            id: 'Musim gugur mempesona dengan dedaunan maple yang berubah menjadi emas',
-            en: 'Autumn is enchanting with maple leaves turning golden',
-            jp: '秋は黄金色に変わる紅葉で魅惑的です'
-        },
+        title: 'Autumn Season',
+        titleJp: '秋 (Aki)',
+        description: 'Musim gugur mempesona dengan dedaunan maple yang berubah menjadi emas',
         particle: '🍁',
         particleCount: 35,
         icon: '🍁',
-        period: { id: 'September - November', en: 'September - November', jp: '9月 - 11月' },
-        characteristics: {
-            id: 'Sejuk, dedaunan berubah warna, udara segar',
-            en: 'Cool, changing leaves, fresh air',
-            jp: '涼しい、紅葉、新鮮な空気'
-        },
-        traditions: {
-            id: 'Momijigari (melihat daun maple), panen',
-            en: 'Momijigari (maple viewing), harvest',
-            jp: '紅葉狩り、収穫'
+        period: 'September - November',
+        characteristics: 'Sejuk, dedaunan berubah warna, udara segar',
+        traditions: 'Momijigari (melihat daun maple), panen',
+        translations: {
+            id: {
+                title: 'Autumn Season',
+                titleJp: '秋 (Aki)',
+                description: 'Musim gugur mempesona dengan dedaunan maple yang berubah menjadi emas',
+                period: 'September - November',
+                characteristics: 'Sejuk, dedaunan berubah warna, udara segar',
+                traditions: 'Momijigari (melihat daun maple), panen'
+            },
+            en: {
+                title: 'Autumn Season',
+                titleJp: '秋 (Aki)',
+                description: 'Autumn is enchanting with maple leaves turning golden',
+                period: 'September - November',
+                characteristics: 'Cool, changing leaves, fresh air',
+                traditions: 'Momijigari (maple viewing), harvest'
+            },
+            jp: {
+                title: '秋の季節',
+                titleJp: '秋 (アキ)',
+                description: '秋は黄金色に変わる紅葉で魅惑的です',
+                period: '9月 - 11月',
+                characteristics: '涼しい、紅葉、新鮮な空気',
+                traditions: '紅葉狩り、収穫'
+            }
         }
     },
     winter: {
-        title: { id: 'Winter Season', en: 'Winter Season', jp: '冬の季節' },
-        titleJp: { id: '冬 (Fuyu)', en: '冬 (Fuyu)', jp: '冬 (フユ)' },
-        description: {
-            id: 'Musim dingin membawa ketenangan dengan salju yang turun lembut',
-            en: 'Winter brings tranquility with gently falling snow',
-            jp: '冬は優しく降る雪で静けさをもたらします'
-        },
+        title: 'Winter Season',
+        titleJp: '冬 (Fuyu)',
+        description: 'Musim dingin membawa ketenangan dengan salju yang turun lembut',
         particle: '❄️',
         particleCount: 40,
         icon: '❄️',
-        period: { id: 'Desember - Februari', en: 'December - February', jp: '12月 - 2月' },
-        characteristics: {
-            id: 'Dingin, bersalju, pemandangan putih bersih',
-            en: 'Cold, snowy, pristine white scenery',
-            jp: '寒い、雪、きれいな白い景色'
-        },
-        traditions: {
-            id: 'Onsen (pemandian air panas), perayaan tahun baru',
-            en: 'Onsen (hot springs), New Year celebrations',
-            jp: '温泉、新年のお祝い'
+        period: 'Desember - Februari',
+        characteristics: 'Dingin, bersalju, pemandangan putih bersih',
+        traditions: 'Onsen (pemandian air panas), perayaan tahun baru',
+        translations: {
+            id: {
+                title: 'Winter Season',
+                titleJp: '冬 (Fuyu)',
+                description: 'Musim dingin membawa ketenangan dengan salju yang turun lembut',
+                period: 'Desember - Februari',
+                characteristics: 'Dingin, bersalju, pemandangan putih bersih',
+                traditions: 'Onsen (pemandian air panas), perayaan tahun baru'
+            },
+            en: {
+                title: 'Winter Season',
+                titleJp: '冬 (Fuyu)',
+                description: 'Winter brings tranquility with gently falling snow',
+                period: 'December - February',
+                characteristics: 'Cold, snowy, pristine white scenery',
+                traditions: 'Onsen (hot springs), New Year celebrations'
+            },
+            jp: {
+                title: '冬の季節',
+                titleJp: '冬 (フユ)',
+                description: '冬は優しく降る雪で静けさをもたらします',
+                period: '12月 - 2月',
+                characteristics: '寒い、雪、きれいな白い景色',
+                traditions: '温泉、新年のお祝い'
+            }
         }
     }
 };
@@ -274,13 +337,11 @@ function updateDateTime() {
 // ===================================
 
 function changeSeason(season) {
-    if (!seasons[season]) {
-        console.error(`Invalid season: ${season}`);
-        return;
-    }
+    if (!seasons[season]) return;
     
     currentSeason = season;
     const config = seasons[season];
+    const trans = config.translations[currentLanguage];
     
     document.body.className = season;
     
@@ -291,15 +352,13 @@ function changeSeason(season) {
         }
     });
     
-    // Update season info with current language
     document.getElementById('season-icon').textContent = config.icon;
-    document.getElementById('season-title').textContent = `${config.title[currentLanguage]} - ${config.titleJp[currentLanguage]}`;
-    document.getElementById('season-description').textContent = config.description[currentLanguage];
-    document.getElementById('season-period-text').textContent = config.period[currentLanguage];
-    document.getElementById('season-characteristics').textContent = config.characteristics[currentLanguage];
-    document.getElementById('season-traditions').textContent = config.traditions[currentLanguage];
+    document.getElementById('season-title').textContent = `${trans.title} - ${trans.titleJp}`;
+    document.getElementById('season-description').textContent = trans.description;
+    document.getElementById('season-period-text').textContent = trans.period;
+    document.getElementById('season-characteristics').textContent = trans.characteristics;
+    document.getElementById('season-traditions').textContent = trans.traditions;
     
-    // Update radio button in settings
     const seasonRadio = document.querySelector(`input[name="season"][value="${season}"]`);
     if (seasonRadio) seasonRadio.checked = true;
     
@@ -372,31 +431,26 @@ function initializeSettings() {
     const closeSettings = document.getElementById('close-settings');
     const animationToggle = document.getElementById('animation-toggle');
     
-    // Open settings
     settingsBtn.addEventListener('click', () => {
         settingsPopup.classList.add('active');
     });
     
-    // Close settings
     closeSettings.addEventListener('click', () => {
         settingsPopup.classList.remove('active');
     });
     
-    // Close on background click
     settingsPopup.addEventListener('click', (e) => {
         if (e.target === settingsPopup) {
             settingsPopup.classList.remove('active');
         }
     });
     
-    // Season selection
     document.querySelectorAll('input[name="season"]').forEach(radio => {
         radio.addEventListener('change', (e) => {
             changeSeason(e.target.value);
         });
     });
     
-    // Animation toggle
     animationToggle.addEventListener('change', (e) => {
         animationEnabled = e.target.checked;
         if (animationEnabled) {
@@ -407,7 +461,6 @@ function initializeSettings() {
         updateToggleLabel();
     });
     
-    // Language selection
     document.querySelectorAll('input[name="language"]').forEach(radio => {
         radio.addEventListener('change', (e) => {
             changeLanguage(e.target.value);
@@ -432,7 +485,6 @@ function updateToggleLabel() {
 function changeLanguage(lang) {
     currentLanguage = lang;
     
-    // Update all translatable elements
     document.querySelectorAll('[data-translate]').forEach(el => {
         const key = el.getAttribute('data-translate');
         if (translations[lang][key]) {
@@ -440,16 +492,10 @@ function changeLanguage(lang) {
         }
     });
     
-    // Update season info
     changeSeason(currentSeason);
-    
-    // Update date/time format
     updateDateTime();
-    
-    // Update toggle label
     updateToggleLabel();
     
-    // Update language radio
     const langRadio = document.querySelector(`input[name="language"][value="${lang}"]`);
     if (langRadio) langRadio.checked = true;
 }
@@ -487,20 +533,3 @@ function initializeFAB() {
         }
     });
 }
-
-// ===================================
-// UTILITY FUNCTIONS
-// ===================================
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
